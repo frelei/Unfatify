@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5B55DADE1BBF18B600743C6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55DADD1BBF18B600743C6C /* AppDelegate.swift */; };
-		5B55DAE01BBF18B600743C6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55DADF1BBF18B600743C6C /* ViewController.swift */; };
-		5B55DAE31BBF18B600743C6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B55DAE11BBF18B600743C6C /* Main.storyboard */; };
 		5B55DAE51BBF18B600743C6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B55DAE41BBF18B600743C6C /* Assets.xcassets */; };
 		5B55DAE81BBF18B600743C6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B55DAE61BBF18B600743C6C /* LaunchScreen.storyboard */; };
 		5B55DAF31BBF18B600743C6C /* UnfatifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55DAF21BBF18B600743C6C /* UnfatifyTests.swift */; };
@@ -28,8 +26,6 @@
 /* Begin PBXFileReference section */
 		5B55DADA1BBF18B600743C6C /* Unfatify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unfatify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B55DADD1BBF18B600743C6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5B55DADF1BBF18B600743C6C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5B55DAE21BBF18B600743C6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5B55DAE41BBF18B600743C6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B55DAE71BBF18B600743C6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5B55DAE91BBF18B600743C6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -77,12 +73,10 @@
 		5B55DADC1BBF18B600743C6C /* Unfatify */ = {
 			isa = PBXGroup;
 			children = (
-				5B55DADD1BBF18B600743C6C /* AppDelegate.swift */,
-				5B55DADF1BBF18B600743C6C /* ViewController.swift */,
-				5B55DAE11BBF18B600743C6C /* Main.storyboard */,
-				5B55DAE41BBF18B600743C6C /* Assets.xcassets */,
-				5B55DAE61BBF18B600743C6C /* LaunchScreen.storyboard */,
-				5B55DAE91BBF18B600743C6C /* Info.plist */,
+				5BAB34D81BBF1C1100D2B6B7 /* Extension */,
+				5B55DAFF1BBF18DF00743C6C /* Model */,
+				5B55DAFE1BBF18D900743C6C /* Storyboard */,
+				5B55DAFD1BBF18BF00743C6C /* Supporting Files */,
 			);
 			path = Unfatify;
 			sourceTree = "<group>";
@@ -94,6 +88,46 @@
 				5B55DAF41BBF18B600743C6C /* Info.plist */,
 			);
 			path = UnfatifyTests;
+			sourceTree = "<group>";
+		};
+		5B55DAFD1BBF18BF00743C6C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5B55DADD1BBF18B600743C6C /* AppDelegate.swift */,
+				5B55DAE41BBF18B600743C6C /* Assets.xcassets */,
+				5B55DAE61BBF18B600743C6C /* LaunchScreen.storyboard */,
+				5B55DAE91BBF18B600743C6C /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5B55DAFE1BBF18D900743C6C /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				5BAB34D91BBF1C2700D2B6B7 /* Login */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		5B55DAFF1BBF18DF00743C6C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		5BAB34D81BBF1C1100D2B6B7 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		5BAB34D91BBF1C2700D2B6B7 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,7 +212,6 @@
 			files = (
 				5B55DAE81BBF18B600743C6C /* LaunchScreen.storyboard in Resources */,
 				5B55DAE51BBF18B600743C6C /* Assets.xcassets in Resources */,
-				5B55DAE31BBF18B600743C6C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,7 +229,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B55DAE01BBF18B600743C6C /* ViewController.swift in Sources */,
 				5B55DADE1BBF18B600743C6C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,14 +252,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5B55DAE11BBF18B600743C6C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5B55DAE21BBF18B600743C6C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5B55DAE61BBF18B600743C6C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -387,6 +411,7 @@
 				5B55DAF91BBF18B600743C6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5B55DAFA1BBF18B600743C6C /* Build configuration list for PBXNativeTarget "UnfatifyTests" */ = {
 			isa = XCConfigurationList;
@@ -395,6 +420,7 @@
 				5B55DAFC1BBF18B600743C6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
