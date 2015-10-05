@@ -93,6 +93,13 @@
 			name = WebService;
 			sourceTree = "<group>";
 		};
+		5B2F95C51BC33029008B1E5A /* Util */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Util;
+			sourceTree = "<group>";
+		};
 		5B55DAD11BBF18B600743C6C = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +123,7 @@
 		5B55DADC1BBF18B600743C6C /* Unfatify */ = {
 			isa = PBXGroup;
 			children = (
+				5B2F95C51BC33029008B1E5A /* Util */,
 				5BAB34D81BBF1C1100D2B6B7 /* Extension */,
 				5B55DAFF1BBF18DF00743C6C /* Model */,
 				5B55DAFE1BBF18D900743C6C /* Storyboard */,
