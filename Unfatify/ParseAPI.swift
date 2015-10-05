@@ -53,6 +53,90 @@ class ParseAPI {
                 failure(error: ERROR)
         })
     }
+    /**
+    Retrieve Object on Parse
+        -@Parameter className: Name of the class
+        -@Parameter success: Success closure
+        -@Paramater failure: Error closure
+        -@return: object
+    */
+    func retrieveObject(className: String, objectId: String, success:PARSE_SUCCESS, failure: PARSE_ERROR){
+        let urlPath = PARSE_API_URL + "classes/" + className + "/" + objectId
+        let webService = WebService()
+        let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY]
+        
+        webService.connection(WebServiceConnectionType.GET, url: urlPath, params: [:], header: header,
+            success: { (JSON) -> Void in
+                let object = JSON as! [String:String]
+                success(data: object)
+            }, failure: { (ERROR) -> Void in
+                failure(error: ERROR)
+        })
+    }
+    /**
+    Update Object on Parse
+        -@Parameter className: Name of the class
+        -@Parameter success: Success closure
+        -@Parameter failure: Error closure
+        -@return: return a dicionary with attribute update value
+    */
+    func updateObject(className: String, objectId: String, data: [String:String], success:PARSE_SUCCESS, failure: PARSE_ERROR){
+        let urlPath = PARSE_API_URL + "classes/" + className + "/" + objectId
+        let webService = WebService()
+        let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY]
+        
+        webService.connection(WebServiceConnectionType.PUT, url: urlPath, params: data, header: header,
+            success: { (JSON) -> Void in
+                let object = JSON as! [String:String]
+                success(data: object)
+            }, failure: { (ERROR) -> Void in
+                failure(error: ERROR)
+        })
+    }
+    /**
+    Delete Object on Parse
+    -@Parameter className: Name of the class
+    -@Parameter success: Success closure
+    -@Parameter failure: Error closure
+    -@return: return a dicionary with attribute update value
+    */
+    func deleteObject(className: String, objectId: String, data: [String:String], success:PARSE_SUCCESS, failure: PARSE_ERROR){
+        let urlPath = PARSE_API_URL + "classes/" + className + "/" + objectId
+        let webService = WebService()
+        let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY]
+        
+        webService.connection(WebServiceConnectionType.DELETE, url: urlPath, params: data, header: header,
+            success: { (JSON) -> Void in
+                let object = JSON as! [String:String]
+                success(data: object)
+            }, failure: { (ERROR) -> Void in
+                failure(error: ERROR)
+        })
+    }
+    
+    /**
+    Query Objects on Parse
+        -@Parameter className: Name of the class
+        -@Parameter success: Success closure
+        -@Parameter failure: Error closure
+        -@return: Array objects
+    */
+    func queryObjects(className: String, whereClause: [String:String],  success:PARSE_SUCCESS, failure: PARSE_ERROR){
+        let urlPath = PARSE_API_URL + "classes/" + className
+        let webService = WebService()
+        let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY]
+        
+        webService.connection(WebServiceConnectionType.GET, url: urlPath, params: whereClause, header: header,
+            success: { (JSON) -> Void in
+                let object = JSON as! [String:String]
+                success(data: object)
+            }, failure: { (ERROR) -> Void in
+                failure(error: ERROR)
+        })
+    }
+    
+    
+    
     
     // MARK: USERS
     
