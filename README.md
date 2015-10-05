@@ -2,7 +2,7 @@
 
 ## Description
 
-An Demostration Mobile app for iOS to count calories.
+A demostration of a mobile app for iOS to count calories.
 
 ## Technology
 
