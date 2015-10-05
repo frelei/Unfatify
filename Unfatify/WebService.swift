@@ -36,34 +36,34 @@ class WebService {
         
         // Add parameters to the request
         for(key,value) in header{
-            manager.requestSerializer.setValue(key, forHTTPHeaderField: value)
+            manager.requestSerializer.setValue(value, forHTTPHeaderField: key)
         }
         
         switch typeConnection{
         case .GET:
             manager.GET(url, parameters: params, success: { (requestOperation, response) -> Void in
-                success(JSON: response)
+                    success(JSON: response)
                 }, failure: { (requestOperation, error) -> Void in
-                    failure( ERROR: error )
+                    failure(ERROR: error)
             })
             
         case .POST:
             manager.POST(url, parameters: params, success: { (requestOperation, response) -> Void in
-                success(JSON:response)
+                    success(JSON:response)
                 }, failure: { (requestOperation, error) -> Void in
                     failure(ERROR:error)
             })
             
         case .PUT:
             manager.PUT(url, parameters: params, success: { (requestOperation, response) -> Void in
-                success(JSON: response)
+                    success(JSON: response)
                 }, failure: { (requestOperation, error) -> Void in
                     failure(ERROR:error)
             })
             
         case .DELETE:
             manager.DELETE(url, parameters: params, success: { (requestOperation, response) -> Void in
-                success(JSON: response)
+                    success(JSON: response)
                 }, failure: { (requestOperation, error) -> Void in
                     failure(ERROR: error)
             })
