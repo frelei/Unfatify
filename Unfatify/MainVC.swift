@@ -1,21 +1,23 @@
 //
-//  LoginVC.swift
+//  MainVC.swift
 //  Unfatify
 //
-//  Created by Rodrigo Leite on 05/10/15.
+//  Created by Rodrigo Leite on 06/10/15.
 //  Copyright © 2015 kobe. All rights reserved.
 //
 
 import UIKit
 
-class LoginVC: UIViewController {
+class MainVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
 
-     /*
+    
+
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
