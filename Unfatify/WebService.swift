@@ -30,7 +30,7 @@ class WebService {
         -@Parameter success: Closure that send the response of the request
         -@Parameter erro: Closure that send the error of the request
     */
-    func connection(typeConnection: WebServiceConnectionType, url: String, params: [String:String], header: [String:String], success: WebServiceSuccess, failure: WebServiceFailure){
+    func connection(typeConnection: WebServiceConnectionType, url: String, params: [String:AnyObject], header: [String:String], success: WebServiceSuccess, failure: WebServiceFailure){
         
         let manager = AFHTTPRequestOperationManager()
         
@@ -38,7 +38,9 @@ class WebService {
         for(key,value) in header{
             manager.requestSerializer.setValue(value, forHTTPHeaderField: key)
         }
+        //manager.requestSerializer.setValue("application/json", forHTTPHeaderField:"Content-Type")
         
+        // TODO: po requestOperation.responseObject!["code"] return the error
         switch typeConnection{
         case .GET:
             manager.GET(url, parameters: params, success: { (requestOperation, response) -> Void in

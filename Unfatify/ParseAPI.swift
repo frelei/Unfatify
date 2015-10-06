@@ -11,7 +11,6 @@ import UIKit
 /// ParseAPI handle all the methods available on the framework
 class ParseAPI {
 
-    // MARK: CUSTOM TYPES
     typealias PARSE_SUCCESS = (data: AnyObject?) -> Void
     typealias PARSE_ERROR = (error: NSError?) -> Void
     
@@ -40,7 +39,7 @@ class ParseAPI {
             }
             ```
      */
-    func createObject(className: String, data:[String:String], success:PARSE_SUCCESS, failure: PARSE_ERROR){
+    func createObject(className: String, data:[String:AnyObject], success:PARSE_SUCCESS, failure: PARSE_ERROR){
         let urlPath = PARSE_API_URL + "classes/" + className
         let webService = WebService()
         let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY]
@@ -50,9 +49,11 @@ class ParseAPI {
                 let object = JSON as! [String:String]
                 success(data: object)
             }, failure: { (ERROR) -> Void in
-                failure(error: ERROR)
+                let fail = ERROR! as NSError
+                failure(error: fail)
         })
     }
+    
     /**
     Retrieve Object on Parse
         -@Parameter className: Name of the class
@@ -73,6 +74,7 @@ class ParseAPI {
                 failure(error: ERROR)
         })
     }
+    
     /**
     Update Object on Parse
         -@Parameter className: Name of the class
@@ -93,6 +95,7 @@ class ParseAPI {
                 failure(error: ERROR)
         })
     }
+    
     /**
     Delete Object on Parse
     -@Parameter className: Name of the class
@@ -136,9 +139,8 @@ class ParseAPI {
     }
     
     
-    
-    
     // MARK: USERS
+    
     
     /**
     Retrieve users from system
@@ -173,6 +175,7 @@ class ParseAPI {
                 failure(error: ERROR)
         })
     }
+    
     /**
     Login user on the system
         -@Parameter username: username of the user
@@ -204,6 +207,7 @@ class ParseAPI {
             failure(error: ERROR)
         })
     }
+    
     /**
     SingUp user on the system
         -@Paramenter param: It's need to hold all the users information. It need contain at least username and password
@@ -231,6 +235,7 @@ class ParseAPI {
                 failure(error: ERROR)
         })
     }
+    
     /**
     Logout user on the system
         -@Parameter username: username of the user
@@ -251,6 +256,7 @@ class ParseAPI {
                 failure(error: ERROR)
         })
     }
+    
     /**
     Retrieve a user associate with that session token
         -@Parameter token: The token of the user
@@ -269,6 +275,7 @@ class ParseAPI {
                 failure(error: ERROR)
         })
     }
+    
     /**
     Update the user
         -@Parameter data: Dictionary with properties, The user are not able to change your username and password
@@ -292,6 +299,7 @@ class ParseAPI {
                 failure(error: ERROR)
         })
     }
+    
     /**
     Reset password to user
         -@Parameter email: email of the user 
@@ -309,7 +317,6 @@ class ParseAPI {
             }, failure: { (ERROR) -> Void in
                 failure(error: ERROR)
         })
-        
     }
     
     

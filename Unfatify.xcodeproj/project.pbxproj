@@ -13,6 +13,7 @@
 		5B2F95C01BC2E876008B1E5A /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B2F95BF1BC2E876008B1E5A /* Login.storyboard */; settings = {ASSET_TAGS = (); }; };
 		5B2F95C21BC2E89A008B1E5A /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F95C11BC2E89A008B1E5A /* LoginVC.swift */; settings = {ASSET_TAGS = (); }; };
 		5B2F95C41BC2F15B008B1E5A /* ParseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F95C31BC2F15B008B1E5A /* ParseAPI.swift */; settings = {ASSET_TAGS = (); }; };
+		5B2F95C71BC33CF1008B1E5A /* ParseAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F95C61BC33CF1008B1E5A /* ParseAPITest.swift */; settings = {ASSET_TAGS = (); }; };
 		5B55DADE1BBF18B600743C6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55DADD1BBF18B600743C6C /* AppDelegate.swift */; };
 		5B55DAE51BBF18B600743C6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B55DAE41BBF18B600743C6C /* Assets.xcassets */; };
 		5B55DAE81BBF18B600743C6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B55DAE61BBF18B600743C6C /* LaunchScreen.storyboard */; };
@@ -37,6 +38,7 @@
 		5B2F95BF1BC2E876008B1E5A /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		5B2F95C11BC2E89A008B1E5A /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		5B2F95C31BC2F15B008B1E5A /* ParseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAPI.swift; sourceTree = "<group>"; };
+		5B2F95C61BC33CF1008B1E5A /* ParseAPITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAPITest.swift; sourceTree = "<group>"; };
 		5B55DADA1BBF18B600743C6C /* Unfatify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unfatify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B55DADD1BBF18B600743C6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B55DAE41BBF18B600743C6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				5B55DAF21BBF18B600743C6C /* UnfatifyTests.swift */,
 				5B55DAF41BBF18B600743C6C /* Info.plist */,
 				5B08E9E81BC2E69500A923D8 /* WebServiceTest.swift */,
+				5B2F95C61BC33CF1008B1E5A /* ParseAPITest.swift */,
 			);
 			path = UnfatifyTests;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B2F95C71BC33CF1008B1E5A /* ParseAPITest.swift in Sources */,
 				5B08E9E91BC2E69500A923D8 /* WebServiceTest.swift in Sources */,
 				5B55DAF31BBF18B600743C6C /* UnfatifyTests.swift in Sources */,
 			);
