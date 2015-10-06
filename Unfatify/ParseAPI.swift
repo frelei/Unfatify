@@ -12,7 +12,7 @@ import UIKit
 class ParseAPI {
 
     typealias PARSE_SUCCESS = (data: AnyObject?) -> Void
-    typealias PARSE_ERROR = (error: NSError?) -> Void
+    typealias PARSE_ERROR = (error: AnyObject?) -> Void
     
     // MARK: ATTRIBUTES
     private let PARSE_API_URL = "https://api.parse.com/1/"
@@ -46,10 +46,10 @@ class ParseAPI {
         
         webService.connection(WebServiceConnectionType.POST, url: urlPath, params: data, header: header,
             success: { (JSON) -> Void in
-                let object = JSON as! [String:String]
+                let object = JSON as! [String:AnyObject]
                 success(data: object)
             }, failure: { (ERROR) -> Void in
-                let fail = ERROR! as NSError
+                let fail = ERROR as! [String: AnyObject]
                 failure(error: fail)
         })
     }
@@ -71,7 +71,8 @@ class ParseAPI {
                 let object = JSON as! [String:String]
                 success(data: object)
             }, failure: { (ERROR) -> Void in
-                failure(error: ERROR)
+                let fail = ERROR as! [String: String]
+                failure(error: fail)
         })
     }
     
@@ -92,7 +93,8 @@ class ParseAPI {
                 let object = JSON as! [String:String]
                 success(data: object)
             }, failure: { (ERROR) -> Void in
-                failure(error: ERROR)
+                let fail = ERROR as! [String: String]
+                failure(error: fail)
         })
     }
     
@@ -113,7 +115,8 @@ class ParseAPI {
                 let object = JSON as! [String:String]
                 success(data: object)
             }, failure: { (ERROR) -> Void in
-                failure(error: ERROR)
+                let fail = ERROR as! [String: String]
+                failure(error: fail)
         })
     }
     
@@ -134,7 +137,8 @@ class ParseAPI {
                 let object = JSON as! [String:String]
                 success(data: object)
             }, failure: { (ERROR) -> Void in
-                failure(error: ERROR)
+                let fail = ERROR as! [String: String]
+                failure(error: fail)
         })
     }
     
@@ -172,7 +176,8 @@ class ParseAPI {
                 let users = array["results"]
                 success(data: users)
             }, failure: { (ERROR) -> Void in
-                failure(error: ERROR)
+                let fail = ERROR as! [String: String]
+                failure(error: fail)
         })
     }
     
@@ -204,7 +209,8 @@ class ParseAPI {
             let user = JSON as! [String:String]
             success(data: user)
         }, failure: { (ERROR) -> Void in
-            failure(error: ERROR)
+            let fail = ERROR as! [String: String]
+            failure(error: fail)
         })
     }
     
@@ -232,7 +238,8 @@ class ParseAPI {
                 let object = JSON as! [String:String]
                 success(data: object)
             }, failure: { (ERROR) -> Void in
-                failure(error: ERROR)
+                let fail = ERROR as! [String: String]
+                failure(error: fail)
         })
     }
     
@@ -253,7 +260,8 @@ class ParseAPI {
             success: { (JSON) -> Void in
                 success(data: JSON)
             }, failure: { (ERROR) -> Void in
-                failure(error: ERROR)
+                let fail = ERROR as! [String: String]
+                failure(error: fail)
         })
     }
     
@@ -272,7 +280,8 @@ class ParseAPI {
                 let user = JSON as! [String:String]
                 success(data: user)
             }, failure: { (ERROR) -> Void in
-                failure(error: ERROR)
+                let fail = ERROR as! [String: String]
+                failure(error: fail)
         })
     }
     
@@ -296,7 +305,8 @@ class ParseAPI {
                 let user = JSON as! [String:String]
                 success(data: user)
             }, failure: { (ERROR) -> Void in
-                failure(error: ERROR)
+                let fail = ERROR as! [String: String]
+                failure(error: fail)
         })
     }
     
@@ -315,7 +325,8 @@ class ParseAPI {
                 let value = JSON as! [String:String]
                 success(data: value)
             }, failure: { (ERROR) -> Void in
-                failure(error: ERROR)
+                let fail = ERROR as! [String: String]
+                failure(error: fail)
         })
     }
     

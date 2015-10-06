@@ -25,7 +25,7 @@ class ParseAPITest: XCTestCase {
     func testCreateObject() {
         let parseAPI = ParseAPI()
         let className = "Meal"
-        let classData = ["name":"Kobe Beef","calorie": NSNumber(float: 500)];
+        let classData = ["name":"Kobe Beef","calorie": 500];
         
         let expectation = expectationWithDescription("TEST_CREATE_OBJECT")
         parseAPI.createObject(className, data: classData,
@@ -41,13 +41,24 @@ class ParseAPITest: XCTestCase {
         })
     }
     
+    func testFailCreateObject() {
+        let parseAPI = ParseAPI()
+        let className = "Meal"
+        let classData = ["name":"Kobe Beef","calorie": "500"];
+        
+        let expectation = expectationWithDescription("TEST_CREATE_OBJECT")
+        parseAPI.createObject(className, data: classData,
+            success: { (data) -> Void in
+                XCTAssertNotNil(data, "SUCCESS")
+                expectation.fulfill()
+            }, failure: { (error) -> Void in
+                XCTAssertNotNil(error, "ERROR")
+                expectation.fulfill()
+        })
+        waitForExpectationsWithTimeout(5, handler: { (error) -> Void in
+            XCTAssertNil(error, "Error")
+        })
+    }
     
-    
-//    func testPerformanceExample() {
-//        // This is an example of a performance test case.
-//        self.measureBlock {
-//            // Put the code you want to measure the time of here.
-//        }
-//    }
     
 }
