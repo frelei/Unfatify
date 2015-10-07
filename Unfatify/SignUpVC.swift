@@ -1,20 +1,25 @@
 //
-//  MainVC.swift
+//  SignUpVC.swift
 //  Unfatify
 //
-//  Created by Rodrigo Leite on 06/10/15.
+//  Created by Rodrigo Leite on 07/10/15.
 //  Copyright © 2015 kobe. All rights reserved.
 //
 
 import UIKit
 
-class MainVC: UIViewController {
+class SignUpVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        // Do any additional setup after loading the view.
     }
 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
 
     /*
