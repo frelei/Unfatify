@@ -206,12 +206,11 @@ class ParseAPI {
         ```
     */
     func signIn(username: String, password: String, success: PARSE_SUCCESS, failure: PARSE_ERROR){
-       let urlPath = PARSE_API_URL + "login"
+       let urlPath = PARSE_API_URL + "login?" + "username=" + username + "&password=" + password
        let webService = WebService()
-       let param = ["username":username, "password":password];
        let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY]
        
-        webService.connection(WebServiceConnectionType.GET, url: urlPath, params: param, header: header,
+        webService.connection(WebServiceConnectionType.GET, url: urlPath, params: nil, header: header,
           success: { (JSON) -> Void in
             let user = JSON as! [String:AnyObject]
             success(data: user)

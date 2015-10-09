@@ -34,32 +34,6 @@ class SignInVC: UIViewController, UITextFieldDelegate {
     }
     
     
-    
-    // MARK: INITIALIZERS
-    
-    func checkSessionUser(){
-        
-        // Allocate the keychain
-//        let keychainService = KeychainService()
-//        let token = keychainService.getToken()
-//        
-        
-        // TODO: Loader until check if user has a token
-//        if let tokenValue = token{
-//            
-//            // Check if user has a session
-//            let parseApi = ParseAPI()
-//            parseApi.currentUser(tokenValue, success: { (data) -> Void in
-//                // Go to Main
-//                
-//                }, failure: { (error) -> Void in
-//                    // Error to get user stay on the singinvc
-//            })
-//        }
-        
-    }
-    
-    
     // MARK: UITEXTFIELDELEGATE
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -72,9 +46,10 @@ class SignInVC: UIViewController, UITextFieldDelegate {
     @IBAction func signin(sender: UIButton) {
         let parseAPI = ParseAPI()
         parseAPI.signIn(self.txtUsername.text!, password: self.txtPassword.text!, success: { (data) -> Void in
-            
+            let user = User.jsonToUser(data as! [String:AnyObject])
+            self.performSegueWithIdentifier("goToMainBySignIn", sender: nil)
             }, failure: { (error) -> Void in
-                
+                // Show message error to user
         })
         
     }
@@ -104,7 +79,9 @@ class SignInVC: UIViewController, UITextFieldDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "goToMainBySignIn"{
+            
+        }
     }
-    
 
 }

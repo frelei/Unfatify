@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3895442AF6F08BC7F5E252E6 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 239827DABD226F4CB3A124B1 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5B00D48F1BC42B6A00835D53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B00D48E1BC42B6A00835D53 /* Main.storyboard */; };
+		5B039DC41BC851650075DBA4 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B039DC31BC851650075DBA4 /* SettingVC.swift */; };
+		5B039DC71BC863530075DBA4 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B039DC61BC863530075DBA4 /* Login.storyboard */; };
 		5B043CCF1BC73A8300977C88 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B043CCE1BC73A8300977C88 /* User.swift */; };
 		5B043CD11BC73A9100977C88 /* UserMeal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B043CD01BC73A9100977C88 /* UserMeal.swift */; };
 		5B043CD31BC73A9E00977C88 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B043CD21BC73A9E00977C88 /* Meal.swift */; };
@@ -42,6 +44,8 @@
 		239827DABD226F4CB3A124B1 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DB11435A1C3C0C0AC95F008 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		5B00D48E1BC42B6A00835D53 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		5B039DC31BC851650075DBA4 /* SettingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
+		5B039DC61BC863530075DBA4 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		5B043CCE1BC73A8300977C88 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5B043CD01BC73A9100977C88 /* UserMeal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMeal.swift; sourceTree = "<group>"; };
 		5B043CD21BC73A9E00977C88 /* Meal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
@@ -110,6 +114,24 @@
 				5BA152501BC5CF2000D1494F /* Controller */,
 			);
 			name = Main;
+			sourceTree = "<group>";
+		};
+		5B039DC51BC8633B0075DBA4 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				5B039DC61BC863530075DBA4 /* Login.storyboard */,
+				5B039DCA1BC863C20075DBA4 /* Controller */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		5B039DCA1BC863C20075DBA4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5BA152451BC5C8C500D1494F /* SignInVC.swift */,
+				5BA152471BC5C8D300D1494F /* SignUpVC.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		5B08E9E51BC2E45700A923D8 /* WebService */ = {
@@ -187,6 +209,7 @@
 		5B55DAFE1BBF18D900743C6C /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				5B039DC51BC8633B0075DBA4 /* Login */,
 				5B00D48D1BC42B5800835D53 /* Main */,
 			);
 			name = Storyboard;
@@ -213,9 +236,8 @@
 		5BA152501BC5CF2000D1494F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5BA152451BC5C8C500D1494F /* SignInVC.swift */,
-				5BA152471BC5C8D300D1494F /* SignUpVC.swift */,
 				5BA152491BC5C91A00D1494F /* CalorieVC.swift */,
+				5B039DC31BC851650075DBA4 /* SettingVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -312,6 +334,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B039DC71BC863530075DBA4 /* Login.storyboard in Resources */,
 				5B55DAE81BBF18B600743C6C /* LaunchScreen.storyboard in Resources */,
 				5B55DAE51BBF18B600743C6C /* Assets.xcassets in Resources */,
 				5B00D48F1BC42B6A00835D53 /* Main.storyboard in Resources */,
@@ -392,6 +415,7 @@
 				5B2F95C41BC2F15B008B1E5A /* ParseAPI.swift in Sources */,
 				5B043CCF1BC73A8300977C88 /* User.swift in Sources */,
 				5BA1524F1BC5CC6100D1494F /* ExtensionColor.swift in Sources */,
+				5B039DC41BC851650075DBA4 /* SettingVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
