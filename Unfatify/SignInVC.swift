@@ -8,12 +8,17 @@
 
 import UIKit
 
-class SignInVC: UIViewController {
+class SignInVC: UIViewController, UITextFieldDelegate {
 
     
     // MARK: IBOUTLETS
-    @IBOutlet weak var txtUsername: UITextField!
-    @IBOutlet weak var txtPassword: UITextField!
+    @IBOutlet weak var txtUsername: UITextField! {
+        didSet{ txtUsername.delegate = self }
+    }
+    
+    @IBOutlet weak var txtPassword: UITextField! {
+        didSet { txtPassword.delegate = self }
+    }
     
     
     // MARK: LIFE CYCLE VC
@@ -21,8 +26,13 @@ class SignInVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = true
+
     }
 
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
     
     
     // MARK: INITIALIZERS
@@ -30,25 +40,31 @@ class SignInVC: UIViewController {
     func checkSessionUser(){
         
         // Allocate the keychain
-        let keychainService = KeychainService()
-        let token = keychainService.getToken()
-        
+//        let keychainService = KeychainService()
+//        let token = keychainService.getToken()
+//        
         
         // TODO: Loader until check if user has a token
-        if let tokenValue = token{
-            
-            // Check if user has a session
-            let parseApi = ParseAPI()
-            parseApi.currentUser(tokenValue, success: { (data) -> Void in
-                // Go to Main
-                
-                }, failure: { (error) -> Void in
-                    // Error to get user stay on the singinvc
-            })
-        }
+//        if let tokenValue = token{
+//            
+//            // Check if user has a session
+//            let parseApi = ParseAPI()
+//            parseApi.currentUser(tokenValue, success: { (data) -> Void in
+//                // Go to Main
+//                
+//                }, failure: { (error) -> Void in
+//                    // Error to get user stay on the singinvc
+//            })
+//        }
         
     }
     
+    
+    // MARK: UITEXTFIELDELEGATE
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
     
     // MARK: IBACTIONS

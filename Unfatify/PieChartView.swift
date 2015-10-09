@@ -19,11 +19,17 @@ class PieChartView: UIView {
     private var pieOverlay : CAShapeLayer!
     private var lineWith: Double = 0.0
     
+    @IBInspectable var background: UIColor!
+    @IBInspectable var backgroundOverlay: UIColor!
+    
     @IBInspectable
     var piePercentage: Double = 10
     {
         willSet(newPiePercent){ updatePiePercentage(newPiePercent) }
     }
+    
+    
+    
     
     
     //MARK: DRAWING
@@ -32,7 +38,7 @@ class PieChartView: UIView {
         
         backgroundLayer = CAShapeLayer()
         pieOverlay = CAShapeLayer()
-        lineWith = Double(self.frame.size.width/2)
+        lineWith = Double(self.frame.size.width/20)
         
         layer.addSublayer(backgroundLayer)
         

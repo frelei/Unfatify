@@ -18,7 +18,7 @@ extension UIColor{
     }
     
     class func grayUnfatify() -> UIColor {
-        return UIColor(red: CGFloat(88/255.0), green: CGFloat(88/255.0), blue: CGFloat(88/255.0), alpha: 1)
+        return UIColor(red: CGFloat(150/255.0), green: CGFloat(150/255.0), blue: CGFloat(150/255.0), alpha: 1)
     }
     
     class func lightGreenUnfatify() -> UIColor {

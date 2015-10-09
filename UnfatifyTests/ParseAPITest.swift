@@ -61,4 +61,23 @@ class ParseAPITest: XCTestCase {
     }
     
     
+    func testRetrieveObject(){
+        let parseAPI = ParseAPI()
+        let className = "UserMeal"
+        
+        let expectation = expectationWithDescription("TEST_CREATE_OBJECT")
+        parseAPI.retrieveObject(className, objectId: "xNWSKsXEJJ", success: { (data) -> Void in
+                XCTAssertNotNil(data, "SUCCESS")
+                expectation.fulfill()
+            }, failure: { (error) -> Void in
+                XCTAssertNotNil(error, "ERROR")
+                expectation.fulfill()
+        })
+
+        waitForExpectationsWithTimeout(5, handler: { (error) -> Void in
+            XCTAssertNil(error, "Error")
+        })
+    }
+    
+    
 }

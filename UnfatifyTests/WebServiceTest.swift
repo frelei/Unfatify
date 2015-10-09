@@ -25,7 +25,7 @@ class WebServiceTest: XCTestCase {
     func testGet(){
         let expectation = expectationWithDescription("TEST_GET")
         let webService = WebService()
-        webService.connection( WebServiceConnectionType.GET, url: "http://jsonplaceholder.typicode.com/posts/1", params: [:], header: [:],
+        webService.connection( WebServiceConnectionType.GET, url: "http://jsonplaceholder.typicode.com/posts/1", params: nil, header: [:],
             success: { (JSON) -> Void in
                 XCTAssertNotNil(JSON, "SUCCESS")
                 expectation.fulfill()

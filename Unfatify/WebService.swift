@@ -7,7 +7,6 @@
 //
 
 import UIKit
-//import AFNetworking
 import Alamofire
 
 /// WebServiceConnectionType represents the type(verb) of the HTTP connetion
@@ -30,28 +29,48 @@ class WebService {
         -@Parameter success: Closure that send the response of the request
         -@Parameter erro: Closure that send the error of the request
     */
-    func connection(typeConnection: WebServiceConnectionType, url: String, params: [String:AnyObject], header: [String:String], success: WebServiceSuccess, failure: WebServiceFailure){
+    func connection(typeConnection: WebServiceConnectionType, url: String, params: [String:AnyObject]?, header: [String:String], success: WebServiceSuccess, failure: WebServiceFailure){
         
         switch typeConnection{
         case .GET:
               Alamofire.request(.GET, url, parameters: params, encoding: .JSON, headers: header)
-                    .responseJSON(completionHandler: { (request, response, result) -> Void in
-                        if result.isSuccess{
-                            let json = result.value as! [String: AnyObject]
-                            if let _ = json["error"]{
-                                failure(ERROR: json)
+                    .responseJSON(completionHandler: { (response) -> Void in
+                        let result = response.result
+                            if result.isSuccess{
+                                let json = result.value as! [String: AnyObject]
+                                if let _ = json["error"]{
+                                    failure(ERROR: json)
+                                }else{
+                                    success(JSON: json)
+                                }
+
                             }else{
-                                success(JSON: json)
+                                failure(ERROR: ["error":"Occured an error"])
                             }
-                            
-                        }else{
-                            failure(ERROR: ["error":"Occured an error"])
-                        }
                     })
             
         case .POST:
             Alamofire.request(.POST, url, parameters: params, encoding: .JSON, headers: header)
-                .responseJSON(completionHandler: { (request, response, result) -> Void in
+                .responseJSON(completionHandler: { (response) -> Void in
+                    let result = response.result
+                    if result.isSuccess{
+                        let json = result.value as! [String: AnyObject]
+                        if let _ = json["error"]{
+                            failure(ERROR: json)
+                        }else{
+                            success(JSON: json)
+                        }
+                        
+                    }else{
+                        failure(ERROR: ["error":"Occured an error"])
+                    }
+                })
+ 
+            
+        case .PUT:
+             Alamofire.request(.PUT, url, parameters: params, encoding: .JSON, headers: header)
+                .responseJSON(completionHandler: { (response) -> Void in
+                    let result = response.result
                     if result.isSuccess{
                         let json = result.value as! [String: AnyObject]
                         if let _ = json["error"]{
@@ -65,26 +84,10 @@ class WebService {
                     }
                 })
             
-            
-        case .PUT:
-             Alamofire.request(.PUT, url, parameters: params, encoding: .JSON, headers: header)
-                .responseJSON(completionHandler: { (request, response, result) -> Void in
-                    if result.isSuccess{
-                        let json = result.value as! [String: AnyObject]
-                        if let _ = json["error"]{
-                            failure(ERROR: json)
-                        }else{
-                            success(JSON: json)
-                        }
-                    }else{
-                        failure(ERROR: ["error":"Occured an error"])
-                    }
-
-                })
-            
         case .DELETE:
             Alamofire.request(.DELETE, url, parameters: params, encoding: .JSON, headers: header)
-                .responseJSON(completionHandler: { (request , response, result) -> Void in
+                .responseJSON(completionHandler: { (response) -> Void in
+                    let result = response.result
                     if result.isSuccess{
                         let json = result.value as! [String: AnyObject]
                         if let _ = json["error"]{
@@ -92,6 +95,7 @@ class WebService {
                         }else{
                             success(JSON: json)
                         }
+                        
                     }else{
                         failure(ERROR: ["error":"Occured an error"])
                     }

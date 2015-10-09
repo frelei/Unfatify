@@ -15,8 +15,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
-       
+        
+        // Allocate the keychain
+        let keychainService = KeychainService()
+        let token = keychainService.getToken()
+        
+        
+        if let tokenValue = token{
+            // retrieve user and go to main screen
+            
+        }
+        
+        
+        
+        
         
         return true
     }

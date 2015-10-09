@@ -40,7 +40,7 @@ class ParseAPI {
             }
             ```
      */
-    func createObject(className: String, data:[String:AnyObject], success:PARSE_SUCCESS, failure: PARSE_ERROR){
+    func createObject(className: String, data:[String:AnyObject]?, success:PARSE_SUCCESS, failure: PARSE_ERROR){
         let urlPath = PARSE_API_URL + "classes/" + className
         let webService = WebService()
         let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY]
@@ -68,12 +68,12 @@ class ParseAPI {
         let webService = WebService()
         let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY]
         
-        webService.connection(WebServiceConnectionType.GET, url: urlPath, params: [:], header: header,
+        webService.connection(WebServiceConnectionType.GET, url: urlPath, params: nil, header: header,
             success: { (JSON) -> Void in
-                let object = JSON as! [String:String]
+                let object = JSON as! [String:AnyObject]
                 success(data: object)
             }, failure: { (ERROR) -> Void in
-                let fail = ERROR as! [String: String]
+                let fail = ERROR as! [String: AnyObject]
                 failure(error: fail)
         })
     }
@@ -86,17 +86,17 @@ class ParseAPI {
         -@Parameter failure: Error closure
         -@return: return a dicionary with attribute update value
     */
-    func updateObject(className: String, objectId: String, data: [String:String], success:PARSE_SUCCESS, failure: PARSE_ERROR){
+    func updateObject(className: String, objectId: String, data: [String:AnyObject]?, success:PARSE_SUCCESS, failure: PARSE_ERROR){
         let urlPath = PARSE_API_URL + "classes/" + className + "/" + objectId
         let webService = WebService()
         let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY]
         
         webService.connection(WebServiceConnectionType.PUT, url: urlPath, params: data, header: header,
             success: { (JSON) -> Void in
-                let object = JSON as! [String:String]
+                let object = JSON as! [String:AnyObject]
                 success(data: object)
             }, failure: { (ERROR) -> Void in
-                let fail = ERROR as! [String: String]
+                let fail = ERROR as! [String: AnyObject]
                 failure(error: fail)
         })
     }
@@ -109,17 +109,17 @@ class ParseAPI {
     -@Parameter failure: Error closure
     -@return: return a dicionary with attribute update value
     */
-    func deleteObject(className: String, objectId: String, data: [String:String], success:PARSE_SUCCESS, failure: PARSE_ERROR){
+    func deleteObject(className: String, objectId: String, data: [String:AnyObject]?, success:PARSE_SUCCESS, failure: PARSE_ERROR){
         let urlPath = PARSE_API_URL + "classes/" + className + "/" + objectId
         let webService = WebService()
         let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY]
         
         webService.connection(WebServiceConnectionType.DELETE, url: urlPath, params: data, header: header,
             success: { (JSON) -> Void in
-                let object = JSON as! [String:String]
+                let object = JSON as! [String:AnyObject]
                 success(data: object)
             }, failure: { (ERROR) -> Void in
-                let fail = ERROR as! [String: String]
+                let fail = ERROR as! [String:AnyObject]
                 failure(error: fail)
         })
     }
@@ -132,17 +132,17 @@ class ParseAPI {
         -@Parameter failure: Error closure
         -@return: Array objects
     */
-    func queryObjects(className: String, whereClause: [String:String],  success:PARSE_SUCCESS, failure: PARSE_ERROR){
+    func queryObjects(className: String, whereClause: [String:AnyObject],  success:PARSE_SUCCESS, failure: PARSE_ERROR){
         let urlPath = PARSE_API_URL + "classes/" + className
         let webService = WebService()
         let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY]
         
         webService.connection(WebServiceConnectionType.GET, url: urlPath, params: whereClause, header: header,
             success: { (JSON) -> Void in
-                let object = JSON as! [String:String]
+                let object = JSON as! [String:AnyObject]
                 success(data: object)
             }, failure: { (ERROR) -> Void in
-                let fail = ERROR as! [String: String]
+                let fail = ERROR as! [String:AnyObject]
                 failure(error: fail)
         })
     }
@@ -177,12 +177,12 @@ class ParseAPI {
         let webService = WebService()
         let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY]
 
-        webService.connection(WebServiceConnectionType.GET, url: urlPath, params: [:], header: header, success: { (JSON) -> Void in
-                let array = JSON as! NSDictionary
+        webService.connection(WebServiceConnectionType.GET, url: urlPath, params: nil, header: header, success: { (JSON) -> Void in
+            let array = JSON as! [String:AnyObject]
                 let users = array["results"]
                 success(data: users)
             }, failure: { (ERROR) -> Void in
-                let fail = ERROR as! [String: String]
+                let fail = ERROR as! [String: AnyObject]
                 failure(error: fail)
         })
     }
@@ -210,13 +210,13 @@ class ParseAPI {
        let webService = WebService()
        let param = ["username":username, "password":password];
        let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY]
-        
-       webService.connection(WebServiceConnectionType.GET, url: urlPath, params: param, header: header,
+       
+        webService.connection(WebServiceConnectionType.GET, url: urlPath, params: param, header: header,
           success: { (JSON) -> Void in
-            let user = JSON as! [String:String]
+            let user = JSON as! [String:AnyObject]
             success(data: user)
         }, failure: { (ERROR) -> Void in
-            let fail = ERROR as! [String: String]
+            let fail = ERROR as! [String: AnyObject]
             failure(error: fail)
         })
     }
@@ -236,17 +236,17 @@ class ParseAPI {
             }
         ```
     */
-    func signUp(param:[String:String], success:PARSE_SUCCESS, failure: PARSE_ERROR){
+    func signUp(param:[String:AnyObject], success:PARSE_SUCCESS, failure: PARSE_ERROR){
         let urlPath = PARSE_API_URL + "users"
         let webService = WebService()
         let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY]
         
         webService.connection(WebServiceConnectionType.POST, url: urlPath, params: param, header: header,
             success: { (JSON) -> Void in
-                let object = JSON as! [String:String]
+                let object = JSON as! [String:AnyObject]
                 success(data: object)
             }, failure: { (ERROR) -> Void in
-                let fail = ERROR as! [String: String]
+                let fail = ERROR as! [String: AnyObject]
                 failure(error: fail)
         })
     }
@@ -269,7 +269,7 @@ class ParseAPI {
             success: { (JSON) -> Void in
                 success(data: JSON)
             }, failure: { (ERROR) -> Void in
-                let fail = ERROR as! [String: String]
+                let fail = ERROR as! [String: AnyObject]
                 failure(error: fail)
         })
     }
@@ -285,12 +285,12 @@ class ParseAPI {
         let webService = WebService()
         let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY, APP_TOKEN_HEADER: token]
         
-        webService.connection(WebServiceConnectionType.GET, url: urlPath, params: [:], header: header,
+        webService.connection(WebServiceConnectionType.GET, url: urlPath, params: nil, header: header,
             success: { (JSON) -> Void in
-                let user = JSON as! [String:String]
+                let user = JSON as! [String: AnyObject]
                 success(data: user)
             }, failure: { (ERROR) -> Void in
-                let fail = ERROR as! [String: String]
+                let fail = ERROR as! [String: AnyObject]
                 failure(error: fail)
         })
     }
@@ -306,17 +306,17 @@ class ParseAPI {
             }
         ```
     */
-    func updateUser(data:[String:String], userID: String, token: String, success: PARSE_SUCCESS, failure: PARSE_ERROR){
+    func updateUser(data:[String:AnyObject]?, userID: String, token: String, success: PARSE_SUCCESS, failure: PARSE_ERROR){
         let urlPath = PARSE_API_URL + "users/" + userID
         let webService = WebService()
         let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY, APP_TOKEN_HEADER: token]
         
         webService.connection(WebServiceConnectionType.PUT, url: urlPath, params: data, header: header,
             success: { (JSON) -> Void in
-                let user = JSON as! [String:String]
+                let user = JSON as! [String:AnyObject]
                 success(data: user)
             }, failure: { (ERROR) -> Void in
-                let fail = ERROR as! [String: String]
+                let fail = ERROR as! [String: AnyObject]
                 failure(error: fail)
         })
     }
@@ -332,12 +332,12 @@ class ParseAPI {
         let webService = WebService()
         let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY]
         
-        webService.connection(WebServiceConnectionType.POST, url: urlPath, params: [:], header: header,
+        webService.connection(WebServiceConnectionType.POST, url: urlPath, params: nil, header: header,
             success: { (JSON) -> Void in
-                let value = JSON as! [String:String]
+                let value = JSON as! [String:AnyObject]
                 success(data: value)
             }, failure: { (ERROR) -> Void in
-                let fail = ERROR as! [String: String]
+                let fail = ERROR as! [String: AnyObject]
                 failure(error: fail)
         })
     }

@@ -8,24 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		3895442AF6F08BC7F5E252E6 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 239827DABD226F4CB3A124B1 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		5B00D48F1BC42B6A00835D53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B00D48E1BC42B6A00835D53 /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
-		5B043CCF1BC73A8300977C88 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B043CCE1BC73A8300977C88 /* User.swift */; settings = {ASSET_TAGS = (); }; };
-		5B043CD11BC73A9100977C88 /* UserMeal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B043CD01BC73A9100977C88 /* UserMeal.swift */; settings = {ASSET_TAGS = (); }; };
-		5B043CD31BC73A9E00977C88 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B043CD21BC73A9E00977C88 /* Meal.swift */; settings = {ASSET_TAGS = (); }; };
-		5B043CD51BC74A5D00977C88 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B043CD41BC74A5D00977C88 /* KeychainService.swift */; settings = {ASSET_TAGS = (); }; };
-		5B08E9E71BC2E46D00A923D8 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08E9E61BC2E46D00A923D8 /* WebService.swift */; settings = {ASSET_TAGS = (); }; };
-		5B08E9E91BC2E69500A923D8 /* WebServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08E9E81BC2E69500A923D8 /* WebServiceTest.swift */; settings = {ASSET_TAGS = (); }; };
-		5B2F95C41BC2F15B008B1E5A /* ParseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F95C31BC2F15B008B1E5A /* ParseAPI.swift */; settings = {ASSET_TAGS = (); }; };
-		5B2F95C71BC33CF1008B1E5A /* ParseAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F95C61BC33CF1008B1E5A /* ParseAPITest.swift */; settings = {ASSET_TAGS = (); }; };
+		5B00D48F1BC42B6A00835D53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B00D48E1BC42B6A00835D53 /* Main.storyboard */; };
+		5B043CCF1BC73A8300977C88 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B043CCE1BC73A8300977C88 /* User.swift */; };
+		5B043CD11BC73A9100977C88 /* UserMeal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B043CD01BC73A9100977C88 /* UserMeal.swift */; };
+		5B043CD31BC73A9E00977C88 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B043CD21BC73A9E00977C88 /* Meal.swift */; };
+		5B043CD51BC74A5D00977C88 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B043CD41BC74A5D00977C88 /* KeychainService.swift */; };
+		5B08E9E71BC2E46D00A923D8 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08E9E61BC2E46D00A923D8 /* WebService.swift */; };
+		5B08E9E91BC2E69500A923D8 /* WebServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08E9E81BC2E69500A923D8 /* WebServiceTest.swift */; };
+		5B2F95C41BC2F15B008B1E5A /* ParseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F95C31BC2F15B008B1E5A /* ParseAPI.swift */; };
+		5B2F95C71BC33CF1008B1E5A /* ParseAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F95C61BC33CF1008B1E5A /* ParseAPITest.swift */; };
 		5B55DADE1BBF18B600743C6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55DADD1BBF18B600743C6C /* AppDelegate.swift */; };
 		5B55DAE51BBF18B600743C6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B55DAE41BBF18B600743C6C /* Assets.xcassets */; };
 		5B55DAE81BBF18B600743C6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B55DAE61BBF18B600743C6C /* LaunchScreen.storyboard */; };
 		5B55DAF31BBF18B600743C6C /* UnfatifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B55DAF21BBF18B600743C6C /* UnfatifyTests.swift */; };
-		5BA152461BC5C8C500D1494F /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA152451BC5C8C500D1494F /* SignInVC.swift */; settings = {ASSET_TAGS = (); }; };
-		5BA152481BC5C8D300D1494F /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA152471BC5C8D300D1494F /* SignUpVC.swift */; settings = {ASSET_TAGS = (); }; };
-		5BA1524A1BC5C91A00D1494F /* CalorieVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA152491BC5C91A00D1494F /* CalorieVC.swift */; settings = {ASSET_TAGS = (); }; };
-		5BA1524D1BC5CA4800D1494F /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1524C1BC5CA4800D1494F /* PieChartView.swift */; settings = {ASSET_TAGS = (); }; };
-		5BA1524F1BC5CC6100D1494F /* ExtensionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1524E1BC5CC6100D1494F /* ExtensionColor.swift */; settings = {ASSET_TAGS = (); }; };
+		5BA152461BC5C8C500D1494F /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA152451BC5C8C500D1494F /* SignInVC.swift */; };
+		5BA152481BC5C8D300D1494F /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA152471BC5C8D300D1494F /* SignUpVC.swift */; };
+		5BA1524A1BC5C91A00D1494F /* CalorieVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA152491BC5C91A00D1494F /* CalorieVC.swift */; };
+		5BA1524D1BC5CA4800D1494F /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1524C1BC5CA4800D1494F /* PieChartView.swift */; };
+		5BA1524F1BC5CC6100D1494F /* ExtensionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA1524E1BC5CC6100D1494F /* ExtensionColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -516,7 +516,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Unfatify/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kobe.Unfatify;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -530,7 +530,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Unfatify/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kobe.Unfatify;
 				PRODUCT_NAME = "$(TARGET_NAME)";
