@@ -22,8 +22,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         if let tokenValue = token{
-            // retrieve user and go to main screen
-            
+            // retrieve user
+            let user = User.currentUser(tokenValue)
+            if let currentUser = user{
+                // TODO: save user instance on keychain
+                
+                // go to main screen
+                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                let calorieVC = storyboard.instantiateViewControllerWithIdentifier("CalorieVC")
+                let navigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+                navigationController.pushViewController(calorieVC, animated: true)
+                self.window?.rootViewController = navigationController
+               
+            }
         }
         
         

@@ -155,7 +155,7 @@
         <!--CalorieVC-->
         <scene sceneID="u1l-xP-JJX">
             <objects>
-                <viewController id="rKL-gm-xgx" customClass="CalorieVC" customModule="Unfatify" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CalorieVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rKL-gm-xgx" customClass="CalorieVC" customModule="Unfatify" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hKy-3P-nZh"/>
                         <viewControllerLayoutGuide type="bottom" id="ta2-WO-Taz"/>
