@@ -33,3 +33,27 @@ extension UIColor{
         return UIColor(red: CGFloat(228/255.0), green: CGFloat(68/255.0), blue: CGFloat(36/255.0), alpha: 1)
     }
 }
+
+extension UITextField{
+    
+    func charactersInRange(range: Int) -> Bool{
+        return self.text?.characters.count >= range
+    }
+    
+    func containsCharacter(character: String) -> Bool{
+        return (self.text?.containsString(character))!
+    }
+    
+}
+
+extension UIAlertController{
+    
+    class func basicMessage(title:String, message:String) -> UIAlertController{
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let OkAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alertController.addAction(OkAction)
+        return alertController
+    }
+    
+}
+

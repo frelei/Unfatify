@@ -29,9 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 // go to main screen
                 let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-                let calorieVC = storyboard.instantiateViewControllerWithIdentifier("CalorieVC")
                 let navigationController = storyboard.instantiateInitialViewController() as! UINavigationController
-                navigationController.pushViewController(calorieVC, animated: true)
                 self.window?.rootViewController = navigationController
                
             }
