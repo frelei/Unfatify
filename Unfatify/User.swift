@@ -8,12 +8,14 @@
 
 import UIKit
 
+/// User responsable to hold and perform actions to user
 class User {
 
+    // MARK : ATTRIBUTES
     var objectID:String?
     var username:String?
     var picture:String?
-    var dailyCalorie: Int?
+    var dailyCalorie: NSNumber?
     var email:String?
     var createdAt:String?
     var updateAt:String?
@@ -21,12 +23,14 @@ class User {
     var height:Int?
     var sessionToken: String?{
         willSet (newToken){
-            let keychainService = KeychainService()
-            keychainService.setToken(newToken!)
+            if newToken != nil{
+                let keychainService = KeychainService()
+                keychainService.setToken(newToken!)
+            }
         }
     }
     
-    init(objectID: String, username: String, picture: String, dailyCalorie: Int, email:String, token:String, updateAt:String, createdAt:String){
+    init(objectID: String?, username: String?, picture: String?, dailyCalorie: NSNumber?, email:String?, token:String?, updateAt:String?, createdAt:String?){
         self.objectID = objectID
         self.username = username
         self.picture = picture
@@ -37,6 +41,9 @@ class User {
         self.createdAt = createdAt
     }
     
+    
+    
+   /// Load users based on a valid token
    class func currentUser(token: String) -> User?{
         
         var currentUser: User?
@@ -55,19 +62,18 @@ class User {
        return currentUser
     }
     
-    // MARK: AUXILIAR METHODS
-    
+    // MARK: HELPER METHODS
     
     class func jsonToUser(data: [String:AnyObject]) -> User{
-        return User.init(objectID: data["objectId"] as! String,
-                        username: data["username"] as! String,
-                        picture: data["picture"] as! String,
-                        dailyCalorie: data["dailyCalorie"] as! Int,
-                        email: data["email"] as! String,
-                        token: data["sessionToken"] as! String,
-                        updateAt: data["updatedAt"] as! String,
-                        createdAt: data["createdAt"] as! String)
         
+        return User.init(objectID: data["objectId"] as? String,
+                        username: data["username"] as? String,
+                        picture: data["picture"] as? String,
+                        dailyCalorie: data["dailyCalorie"] as? NSNumber,
+                        email: data["email"] as? String,
+                        token: data["sessionToken"] as? String,
+                        updateAt: data["updatedAt"] as? String,
+                        createdAt: data["createdAt"] as? String)
     }
     
      class func userToJson(user: User) -> [String:AnyObject]{
@@ -75,7 +81,6 @@ class User {
                              "picture": user.picture as! AnyObject,
                              "dailyCalorie": user.dailyCalorie as! AnyObject,
                              "email":user.email as! AnyObject]
-        
         return dictionary
           
     }
