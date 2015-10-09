@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		3895442AF6F08BC7F5E252E6 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 239827DABD226F4CB3A124B1 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5B00D48F1BC42B6A00835D53 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B00D48E1BC42B6A00835D53 /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
+		5B043CCF1BC73A8300977C88 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B043CCE1BC73A8300977C88 /* User.swift */; settings = {ASSET_TAGS = (); }; };
+		5B043CD11BC73A9100977C88 /* UserMeal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B043CD01BC73A9100977C88 /* UserMeal.swift */; settings = {ASSET_TAGS = (); }; };
+		5B043CD31BC73A9E00977C88 /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B043CD21BC73A9E00977C88 /* Meal.swift */; settings = {ASSET_TAGS = (); }; };
+		5B043CD51BC74A5D00977C88 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B043CD41BC74A5D00977C88 /* KeychainService.swift */; settings = {ASSET_TAGS = (); }; };
 		5B08E9E71BC2E46D00A923D8 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08E9E61BC2E46D00A923D8 /* WebService.swift */; settings = {ASSET_TAGS = (); }; };
 		5B08E9E91BC2E69500A923D8 /* WebServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B08E9E81BC2E69500A923D8 /* WebServiceTest.swift */; settings = {ASSET_TAGS = (); }; };
 		5B2F95C41BC2F15B008B1E5A /* ParseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2F95C31BC2F15B008B1E5A /* ParseAPI.swift */; settings = {ASSET_TAGS = (); }; };
@@ -38,6 +42,10 @@
 		239827DABD226F4CB3A124B1 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DB11435A1C3C0C0AC95F008 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		5B00D48E1BC42B6A00835D53 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		5B043CCE1BC73A8300977C88 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5B043CD01BC73A9100977C88 /* UserMeal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMeal.swift; sourceTree = "<group>"; };
+		5B043CD21BC73A9E00977C88 /* Meal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
+		5B043CD41BC74A5D00977C88 /* KeychainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		5B08E9E61BC2E46D00A923D8 /* WebService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 		5B08E9E81BC2E69500A923D8 /* WebServiceTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebServiceTest.swift; sourceTree = "<group>"; };
 		5B2F95C31BC2F15B008B1E5A /* ParseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseAPI.swift; sourceTree = "<group>"; };
@@ -116,6 +124,8 @@
 		5B2F95C51BC33029008B1E5A /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				5B043CD41BC74A5D00977C88 /* KeychainService.swift */,
+				5B08E9E51BC2E45700A923D8 /* WebService */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -185,7 +195,9 @@
 		5B55DAFF1BBF18DF00743C6C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5B08E9E51BC2E45700A923D8 /* WebService */,
+				5B043CCE1BC73A8300977C88 /* User.swift */,
+				5B043CD01BC73A9100977C88 /* UserMeal.swift */,
+				5B043CD21BC73A9E00977C88 /* Meal.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -372,9 +384,13 @@
 				5B08E9E71BC2E46D00A923D8 /* WebService.swift in Sources */,
 				5B55DADE1BBF18B600743C6C /* AppDelegate.swift in Sources */,
 				5BA1524A1BC5C91A00D1494F /* CalorieVC.swift in Sources */,
+				5B043CD31BC73A9E00977C88 /* Meal.swift in Sources */,
+				5B043CD51BC74A5D00977C88 /* KeychainService.swift in Sources */,
 				5BA152461BC5C8C500D1494F /* SignInVC.swift in Sources */,
 				5BA152481BC5C8D300D1494F /* SignUpVC.swift in Sources */,
+				5B043CD11BC73A9100977C88 /* UserMeal.swift in Sources */,
 				5B2F95C41BC2F15B008B1E5A /* ParseAPI.swift in Sources */,
+				5B043CCF1BC73A8300977C88 /* User.swift in Sources */,
 				5BA1524F1BC5CC6100D1494F /* ExtensionColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -27,6 +27,7 @@ class ParseAPI {
     
     /**
     Create Object on Parse
+    
         -@Parameter className: Name of the class
         -@Parameter data: The data of the class
         -@Parameter success: Success closure
@@ -56,6 +57,7 @@ class ParseAPI {
     
     /**
     Retrieve Object on Parse
+    
         -@Parameter className: Name of the class
         -@Parameter success: Success closure
         -@Paramater failure: Error closure
@@ -78,6 +80,7 @@ class ParseAPI {
     
     /**
     Update Object on Parse
+    
         -@Parameter className: Name of the class
         -@Parameter success: Success closure
         -@Parameter failure: Error closure
@@ -100,6 +103,7 @@ class ParseAPI {
     
     /**
     Delete Object on Parse
+    
     -@Parameter className: Name of the class
     -@Parameter success: Success closure
     -@Parameter failure: Error closure
@@ -122,6 +126,7 @@ class ParseAPI {
     
     /**
     Query Objects on Parse
+    
         -@Parameter className: Name of the class
         -@Parameter success: Success closure
         -@Parameter failure: Error closure
@@ -148,6 +153,7 @@ class ParseAPI {
     
     /**
     Retrieve users from system
+    
         -@Parameter className: Name of the class
         -@Parameter data: The data of the class
         -@Parameter success: Success closure
@@ -183,6 +189,7 @@ class ParseAPI {
     
     /**
     Login user on the system
+    
         -@Parameter username: username of the user
         -@Parameter password: password of the user
         -@Parameter success: Success closure
@@ -216,6 +223,7 @@ class ParseAPI {
     
     /**
     SingUp user on the system
+    
         -@Paramenter param: It's need to hold all the users information. It need contain at least username and password
         -@Parameter success: Success closure
         -@Parameter failure: Error closure
@@ -245,6 +253,7 @@ class ParseAPI {
     
     /**
     Logout user on the system
+    
         -@Parameter username: username of the user
         -@Parameter password: password of the user
         -@Parameter token: token session
@@ -267,6 +276,7 @@ class ParseAPI {
     
     /**
     Retrieve a user associate with that session token
+    
         -@Parameter token: The token of the user
         -@return: A user
     */
@@ -287,6 +297,7 @@ class ParseAPI {
     
     /**
     Update the user
+    
         -@Parameter data: Dictionary with properties, The user are not able to change your username and password
         -@return 
         ```
@@ -312,8 +323,9 @@ class ParseAPI {
     
     /**
     Reset password to user
-        -@Parameter email: email of the user 
-        -@return: empty value
+    
+        - @Parameter email: email of the user
+        - @return: empty value
     */
     func resetPassword(email: String, success: PARSE_SUCCESS, failure: PARSE_ERROR){
         let urlPath = PARSE_API_URL + "requestPasswordReset"
