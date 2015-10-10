@@ -14,8 +14,12 @@ class SignInVC: UIViewController, UITextFieldDelegate {
     
     let titleWarinig = "Unfatfy"
     let messageWarning  = "Invalid parameters to login"
-    let fieldMessage = "The field need to be at least 5 characters"
+    let messagefieldValidation = "The field need to be at least 5 characters"
+    let messageResetEmail = "Check your email, Unfatify send an email to reset your password"
+    let messageErrorServer  = "Ops! Server error on sign up, please try again"
     
+    var selectedTextField = 0
+    var gap = 2.5
     
     // MARK: IBOUTLETS
     @IBOutlet weak var txtUsername: UITextField! {
@@ -35,9 +39,36 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
 
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
+    }
+    
+    
+    // MARK: KEYBOARD
+    func keyboardWillShow(notification: NSNotification){
+        let info : NSDictionary = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue().size.height
+        let size =   Double(keyboardSize!)  *  Double( Double(self.selectedTextField) / self.gap) // Total of UITextFields
+        self.view.frame.origin.y = 0
+        self.view.frame.origin.y -=  CGFloat(size)
+    }
+    
+    func keyboardWillHide(notification: NSNotification){
+        self.view.frame.origin.y = 0
     }
     
     
@@ -47,6 +78,11 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    func textFieldDidBeginEditing(textField: UITextField) {
+        self.selectedTextField = textField.tag
+    }
+    
+    
     
     // MARK: IBACTIONS
     
@@ -54,13 +90,13 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         // TODO: LOADER
         guard let username = self.txtUsername where self.txtUsername.charactersInRange(5)
                              else {
-                                let  alertController = UIAlertController.basicMessage(self.titleWarinig, message: self.fieldMessage)
+                                let  alertController = UIAlertController.basicMessage(self.titleWarinig, message: self.messagefieldValidation)
                                 self.presentViewController(alertController, animated: true, completion: nil)
                                 return
                              }
         guard let password = self.txtPassword where self.txtPassword.charactersInRange(5)
                             else {
-                                let  alertController = UIAlertController.basicMessage(self.titleWarinig, message: self.fieldMessage)
+                                let  alertController = UIAlertController.basicMessage(self.titleWarinig, message: self.messagefieldValidation)
                                 self.presentViewController(alertController, animated: true, completion: nil)
                                 return
                             }
@@ -88,13 +124,15 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         
     }
     
-    
+    // TODO: Alert
     @IBAction func forgotPassword(sender: UIButton) {
         let parseAPI = ParseAPI()
         parseAPI.resetPassword("Email", success: { (data) -> Void in
-            
+            let  alertController = UIAlertController.basicMessage(self.titleWarinig, message: self.messageResetEmail)
+            self.presentViewController(alertController, animated: true, completion: nil)
         }, failure: { (error) -> Void in
-                
+            let  alertController = UIAlertController.basicMessage(self.titleWarinig, message: self.messageResetEmail)
+            self.presentViewController(alertController, animated: true, completion: nil)
         })
     }
     
@@ -105,17 +143,15 @@ class SignInVC: UIViewController, UITextFieldDelegate {
     }
     
     
-
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        if segue.identifier == "goToMainBySignIn"{
-            
-        }
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        // Get the new view controller using segue.destinationViewController.
+//        // Pass the selected object to the new view controller.
+//        if segue.identifier == "goToMainBySignIn"{
+//            
+//        }
+//    }
 
 }

@@ -186,7 +186,7 @@ class ParseAPI {
                 failure(error: fail)
         })
     }
-    
+        
     /**
     Login user on the system
     
