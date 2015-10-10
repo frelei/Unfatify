@@ -42,23 +42,15 @@ class User {
     }
     
     
-    
    /// Load users based on a valid token
    class func currentUser(token: String) -> User?{
         
-        var currentUser: User?
-        
-        let semaphore = dispatch_semaphore_create(0);
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { () -> Void in
-            let parseApi = ParseAPI()
-                parseApi.currentUser(token, success: { (data) -> Void in
+     var currentUser: User?
+     let parseApi = ParseAPI()
+     parseApi.currentUser(token, success: { (data) -> Void in
                     currentUser = self.jsonToUser(data as! [String:AnyObject])
-                    dispatch_semaphore_signal(semaphore)
                 }, failure: { (error) -> Void in
-                    dispatch_semaphore_signal(semaphore)
-                })
-        }
-       dispatch_semaphore_wait(semaphore,  DISPATCH_TIME_FOREVER)
+                    currentUser = nil  })
        return currentUser
     }
     

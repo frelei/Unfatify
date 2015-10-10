@@ -284,7 +284,7 @@ class ParseAPI {
         let webService = WebService()
         let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY, APP_TOKEN_HEADER: token]
         
-        webService.connection(WebServiceConnectionType.GET, url: urlPath, params: nil, header: header,
+        webService.connection(WebServiceConnectionType.GET_SYNC, url: urlPath, params: nil, header: header,
             success: { (JSON) -> Void in
                 let user = JSON as! [String: AnyObject]
                 success(data: user)

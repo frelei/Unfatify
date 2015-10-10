@@ -11,7 +11,7 @@ import Alamofire
 
 /// WebServiceConnectionType represents the type(verb) of the HTTP connetion
 enum WebServiceConnectionType{
-    case GET,POST,PUT,DELETE
+    case GET,POST,PUT,DELETE,GET_SYNC
 }
 
 /// WebService is the class responsable for HTTP request to a Restful API
@@ -100,6 +100,33 @@ class WebService {
                         failure(ERROR: ["error":"Occured an error"])
                     }
                 })
+        case .GET_SYNC:
+            let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+            request.HTTPMethod = "GET"
+            for (key,value) in header{
+                request.setValue(value, forHTTPHeaderField: key)
+            }
+            
+            let semaphore = dispatch_semaphore_create(0)
+            let session = NSURLSession.sharedSession()
+            let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+                if error == nil{
+                    do {
+                        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! [String: AnyObject]
+                        dispatch_semaphore_signal(semaphore)
+                        success(JSON: json)
+                    }catch _ {
+                        dispatch_semaphore_signal(semaphore)
+                        failure(ERROR: ["error" : "Error parsing"])
+                    }
+                }else{
+                    dispatch_semaphore_signal(semaphore)
+                    failure(ERROR: ["error" : "Error data"])
+                }
+                
+            })
+            task.resume()
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
         }
     }
 }
