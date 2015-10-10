@@ -106,7 +106,6 @@ class WebService {
             for (key,value) in header{
                 request.setValue(value, forHTTPHeaderField: key)
             }
-            
             let semaphore = dispatch_semaphore_create(0)
             let session = NSURLSession.sharedSession()
             let task = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
@@ -114,7 +113,11 @@ class WebService {
                     do {
                         let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! [String: AnyObject]
                         dispatch_semaphore_signal(semaphore)
-                        success(JSON: json)
+                        if json["error"] == nil{
+                            success(JSON: json)
+                        }else{
+                            failure(ERROR: json)
+                        }
                     }catch _ {
                         dispatch_semaphore_signal(semaphore)
                         failure(ERROR: ["error" : "Error parsing"])

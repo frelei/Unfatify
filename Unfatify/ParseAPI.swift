@@ -252,19 +252,15 @@ class ParseAPI {
     
     /**
     Logout user on the system
-    
-        -@Parameter username: username of the user
-        -@Parameter password: password of the user
         -@Parameter token: token session
     
     */
-    func logout(username: String, password: String, token: String, success: PARSE_SUCCESS, failure: PARSE_ERROR){
-        let urlPath = PARSE_API_URL + "login"
+    func logout(token: String, success: PARSE_SUCCESS, failure: PARSE_ERROR){
+        let urlPath = PARSE_API_URL + "logout"
         let webService = WebService()
-        let param = ["username":username, "password":password];
         let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY, APP_TOKEN_HEADER: token]
         
-        webService.connection(WebServiceConnectionType.POST, url: urlPath, params: param, header: header,
+        webService.connection(WebServiceConnectionType.POST, url: urlPath, params: nil, header: header,
             success: { (JSON) -> Void in
                 success(data: JSON)
             }, failure: { (ERROR) -> Void in
@@ -277,21 +273,25 @@ class ParseAPI {
     Retrieve a user associate with that session token
     
         -@Parameter token: The token of the user
-        -@return: A user
+        -@return:  user
     */
     func currentUser(token: String, success: PARSE_SUCCESS, failure: PARSE_ERROR){
         let urlPath = PARSE_API_URL + "users/me"
         let webService = WebService()
         let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY, APP_TOKEN_HEADER: token]
-        
+
+        let semaphore = dispatch_semaphore_create(0)
         webService.connection(WebServiceConnectionType.GET_SYNC, url: urlPath, params: nil, header: header,
             success: { (JSON) -> Void in
-                let user = JSON as! [String: AnyObject]
-                success(data: user)
+                let json = JSON as! [String: AnyObject]
+                dispatch_semaphore_signal(semaphore)
+                success(data: json)
             }, failure: { (ERROR) -> Void in
                 let fail = ERROR as! [String: AnyObject]
+                dispatch_semaphore_signal(semaphore)
                 failure(error: fail)
         })
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     }
     
     /**

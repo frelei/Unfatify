@@ -20,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let keychainService = KeychainService()
         let token = keychainService.getToken()
         
+        
         if let tokenValue = token{
             // retrieve user
             let user = User.currentUser(tokenValue)
@@ -30,6 +31,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let calorieVC = navigationController.viewControllers.first as! CalorieVC
                 calorieVC.user = currentUser
                 self.window?.rootViewController = navigationController
+            }else{
+                // Once it was not possible retrieve the session, remove token from keychain
+                keychainService.deleteToken()
+                // Remove session
+                let parseApi = ParseAPI()
+                parseApi.logout(token!, success: { (data) -> Void in
+                    }, failure: { (error) -> Void in
+                })
             }
         }
         return true

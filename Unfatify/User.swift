@@ -41,17 +41,26 @@ class User {
         self.createdAt = createdAt
     }
     
+    // MARK:
     
-   /// Load users based on a valid token
+   /**
+      Retrieve user from parse based on token session  
+
+    */
    class func currentUser(token: String) -> User?{
         
      var currentUser: User?
      let parseApi = ParseAPI()
+     let semaphore = dispatch_semaphore_create(0)
      parseApi.currentUser(token, success: { (data) -> Void in
                     currentUser = self.jsonToUser(data as! [String:AnyObject])
+                    dispatch_semaphore_signal(semaphore)
                 }, failure: { (error) -> Void in
-                    currentUser = nil  })
-       return currentUser
+                    currentUser = nil
+                    dispatch_semaphore_signal(semaphore)
+                })
+      dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+      return currentUser
     }
     
     // MARK: HELPER METHODS
