@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let keychainService = KeychainService()
         let token = keychainService.getToken()
         
-        
         if let tokenValue = token{
             // retrieve user
             let user = User.currentUser(tokenValue)

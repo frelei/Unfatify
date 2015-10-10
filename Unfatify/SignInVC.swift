@@ -115,7 +115,10 @@ class SignInVC: UIViewController, UITextFieldDelegate {
             let calorieVC = navigationController.viewControllers.first as! CalorieVC
             calorieVC.user = user
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-            appDelegate.window?.rootViewController = navigationController
+            
+            UIView.transitionWithView(self.view, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromBottom, animations: { () -> Void in
+                appDelegate.window?.rootViewController = navigationController
+                }, completion: nil)
             
             }, failure: { (error) -> Void in
                 let  alertController = UIAlertController.basicMessage(self.titleWarinig, message: self.messageWarning)

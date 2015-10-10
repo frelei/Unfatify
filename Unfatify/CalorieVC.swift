@@ -14,9 +14,11 @@ class CalorieVC: UIViewController {
     var user: User?
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let keychainService = KeychainService()
+        let token = keychainService.getToken()
+        user = User.currentUser(token!)
     }
     
     override func viewWillAppear(animated: Bool) {

@@ -11,7 +11,7 @@ import UIKit
 class SignUpVC: UIViewController, UITextFieldDelegate {
     
     // MARK: CONSTANTS
-    let titleWarinig = "Unfatfy"
+    let titleWarinig = "Unfatify"
     let messageErrorServer  = "Ops! Server error on sign up, please try again"
     let messageField = "The field need to be at least 5 characters"
     let messageEmail = "Invalid email"
@@ -86,15 +86,15 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 self.presentViewController(alertController, animated: true, completion: nil)
                 return
         }
-        guard let password = self.txtPassword where self.txtPassword.charactersInRange(5)
-            else {
-                let  alertController = UIAlertController.basicMessage(self.titleWarinig, message: self.messageField)
-                self.presentViewController(alertController, animated: true, completion: nil)
-                return
-        }
         guard let email = self.txtEmail where (self.txtEmail.text?.containsString("@") != nil)
             else {
                 let alertController = UIAlertController.basicMessage(self.titleWarinig, message: self.messageEmail)
+                self.presentViewController(alertController, animated: true, completion: nil)
+                return
+        }
+        guard let password = self.txtPassword where self.txtPassword.charactersInRange(5)
+            else {
+                let  alertController = UIAlertController.basicMessage(self.titleWarinig, message: self.messageField)
                 self.presentViewController(alertController, animated: true, completion: nil)
                 return
         }
@@ -108,7 +108,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         let user = ["username":username.text as! AnyObject,
             "password":password.text as! AnyObject,
             "email":email.text as! AnyObject,
-            "dailyCalorie":dayliCalorie.text as! AnyObject]
+            "dailyCalorie": Int(dayliCalorie.text!) as! AnyObject]
         
         let parseAPI = ParseAPI()
         parseAPI.signUp(user, success: { (data) -> Void in
@@ -124,7 +124,11 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 let calorieVC = navigationController.viewControllers.first as! CalorieVC
                 calorieVC.user = user
                 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                appDelegate.window?.rootViewController = navigationController
+
+                UIView.transitionWithView(self.view, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromBottom, animations: { () -> Void in
+                        appDelegate.window?.rootViewController = navigationController
+                    }, completion: nil)
+            
             
             }, failure: { (error) -> Void in
                 let  alertController = UIAlertController.basicMessage(self.titleWarinig, message: self.messageErrorServer)

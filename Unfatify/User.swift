@@ -21,15 +21,9 @@ class User {
     var updateAt:String?
     var weight:Int?
     var height:Int?
-    var sessionToken: String?{
-        willSet (newToken){
-            if newToken != nil{
-                let keychainService = KeychainService()
-                keychainService.setToken(newToken!)
-            }
-        }
-    }
+    var sessionToken: String?
     
+    // MARK: INITIALIZERS
     init(objectID: String?, username: String?, picture: String?, dailyCalorie: NSNumber?, email:String?, token:String?, updateAt:String?, createdAt:String?){
         self.objectID = objectID
         self.username = username
@@ -41,11 +35,11 @@ class User {
         self.createdAt = createdAt
     }
     
-    // MARK:
     
    /**
-      Retrieve user from parse based on token session  
-
+      Retrieve user from parse based on token session, Method need to be sync
+    
+        -@Parameter token: String
     */
    class func currentUser(token: String) -> User?{
         
