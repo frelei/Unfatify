@@ -28,16 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
                 let navigationController = storyboard.instantiateInitialViewController() as! UINavigationController
                 let calorieVC = navigationController.viewControllers.first as! CalorieVC
-                calorieVC.user = user
+                calorieVC.user = currentUser
                 self.window?.rootViewController = navigationController
-               
             }
         }
-        
-        
-        
-        
-        
         return true
     }
 
