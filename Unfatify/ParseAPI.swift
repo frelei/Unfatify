@@ -132,7 +132,7 @@ class ParseAPI {
         -@Parameter failure: Error closure
         -@return: Array objects
     */
-    func queryObjects(className: String, whereClause: [String:AnyObject],  success:PARSE_SUCCESS, failure: PARSE_ERROR){
+    func queryObjects(className: String, whereClause: [String:AnyObject]?,  success:PARSE_SUCCESS, failure: PARSE_ERROR){
         let urlPath = PARSE_API_URL + "classes/" + className
         let webService = WebService()
         let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY]
@@ -140,7 +140,7 @@ class ParseAPI {
         webService.connection(WebServiceConnectionType.GET, url: urlPath, params: whereClause, header: header,
             success: { (JSON) -> Void in
                 let object = JSON as! [String:AnyObject]
-                success(data: object)
+                success(data: object["results"])
             }, failure: { (ERROR) -> Void in
                 let fail = ERROR as! [String:AnyObject]
                 failure(error: fail)
@@ -186,7 +186,7 @@ class ParseAPI {
                 failure(error: fail)
         })
     }
-        
+    
     /**
     Login user on the system
     

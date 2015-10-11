@@ -8,6 +8,35 @@
 
 import UIKit
 
-class Query: NSObject {
+class Query {
+    
+    var query: String
+    
+    init(){
+        self.query = "where={"
+    }
+    
+    func addObject(object: [String:AnyObject], column:String){
+        for (key,value) in object{
+            self.query += "\"\(column)\":{\"\(key)\":\"\(value)\"},"
+        }
+    }
+    
+    func addPointer(className:String, objectId:String, column:String){
+        self.query += "\"\(column)\":{\"__type\":\"Pointer\",\"className\":\"\(className)\",\"objectId\":\"\(objectId)\"},"
+    }
+    
+    
+    func addDateGte(date:String, column:String){
+        self.query += "\"\(column)\":{\"$gte\":{\"__type\":\"Date\",\"iso\":\"\(date)\"}}"
+    }
+    
+    func getQuery() -> String{
+        if self.query[self.query.endIndex.predecessor()] == ","{
+            self.query = String(self.query.characters.dropLast())
+        }
+        self.query += "}"
+        return self.query
+    }
 
 }

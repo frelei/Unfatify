@@ -21,6 +21,7 @@ class PieChartView: UIView {
     
     @IBInspectable var background: UIColor!
     @IBInspectable var backgroundOverlay: UIColor!
+    @IBInspectable var backgroundColorView: UIColor!
     
     @IBInspectable
     var piePercentage: Double = 10
@@ -31,6 +32,7 @@ class PieChartView: UIView {
     //MARK: DRAWING
     override func layoutSubviews() {
         super.layoutSubviews()
+//        self.backgroundColor = backgroundColorView
         
         backgroundLayer = CAShapeLayer()
         pieOverlay = CAShapeLayer()
@@ -51,7 +53,7 @@ class PieChartView: UIView {
         pieOverlay.path = path.CGPath
         pieOverlay.fillColor = nil
         pieOverlay.lineWidth = CGFloat(lineWith)
-        pieOverlay.strokeColor = UIColor.redUnfatify().CGColor
+        pieOverlay.strokeColor =  UIColor.redUnfatify().CGColor
         pieOverlay.transform = CATransform3DMakeRotation(CGFloat(-M_PI/2), 0, 0, 1)
         pieOverlay.frame = bounds
         
@@ -72,7 +74,6 @@ class PieChartView: UIView {
             animation.fromValue = piePercentage / 100
             animation.toValue = newPercentage / 100
             animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-            
             
             CATransaction.setCompletionBlock { () -> Void in
                 CATransaction.begin()
