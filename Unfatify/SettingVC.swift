@@ -8,11 +8,12 @@
 
 import UIKit
 
-class SettingVC: UIViewController {
+class SettingVC: UIViewController, GoalDelegate {
 
+    
+    
     // MARK: ATTRIBUTES
     var user: User?
-    
     
     // MARK: IBOUTLET
     @IBOutlet weak var lblName: UILabel!
@@ -24,8 +25,17 @@ class SettingVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = true
+
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         self.lblGoal.text = "\(user!.dailyCalorie!)"
         self.lblName.text = "@\(user!.username!)"
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
     // MARK: IBACTIONS
@@ -73,10 +83,24 @@ class SettingVC: UIViewController {
     }
     
     
-    // MARK: - Navigation
+    // MARK: GoalDelegate
+    func goalDidFinish(goalVC:GoalVC, result:Bool){
+        self.navigationController?.popViewControllerAnimated(true)
+        if result{
+            let  alertController = UIAlertController.basicMessage(goalVC.messageTitle, message: goalVC.messageGoalUpdate)
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }else{
+            let  alertController = UIAlertController.basicMessage(goalVC.messageTitle, message: goalVC.messageGoalFailure)
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    
+    // MARK: Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "goToChangeGoal"{
             let goalVC = segue.destinationViewController as! GoalVC
+            goalVC.delegate = self
             goalVC.user = sender as? User
         }else if segue.identifier == "goToFilter"{
             let navigationController = segue.destinationViewController as! UINavigationController

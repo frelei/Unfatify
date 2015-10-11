@@ -8,15 +8,21 @@
 
 import UIKit
 
+protocol GoalDelegate{
+    func goalDidFinish(goalVC:GoalVC, result:Bool)
+}
+
 class GoalVC: UIViewController {
 
     // MARK: MESSAGES
     let messageTitle = "Unfatify"
     let messageField = "The field cannot be empty"
-    
+    let messageGoalUpdate = "Goal update Success"
+    let messageGoalFailure = "Goal not update."
     
     // MARK: ATTRIBUTES
     var user:User?
+    var delegate:GoalDelegate?
     
     // MARK: IBOUTLET
     
@@ -50,9 +56,9 @@ class GoalVC: UIViewController {
         let userDataToUpdate = ["dailyCalorie": user?.dailyCalorie as! AnyObject]
         let parseAPI = ParseAPI()
         parseAPI.updateUser(userDataToUpdate, userID: (user?.objectID)!, token: token!, success: { (data) -> Void in
-                 self.navigationController?.popViewControllerAnimated(true)
+                self.delegate!.goalDidFinish(self, result: true)
             }, failure:{ (error) -> Void in
-                 self.navigationController?.popViewControllerAnimated(true)
+                self.delegate!.goalDidFinish(self,result:  false)
         })
         
     }
