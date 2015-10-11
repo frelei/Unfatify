@@ -18,7 +18,6 @@ class SettingVC: UIViewController {
     
     }
 
-   
     
     
     // MARK: IBACTIONS

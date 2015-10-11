@@ -68,29 +68,16 @@ extension UIAlertController{
 
 extension NSDate{
     
-    func dateToString(formatString: String) -> String{
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = formatString
-        let calendar = NSCalendar.currentCalendar()
-//        let compHour = calendar.component(NSCalendarUnit.Hour, fromDate: self)
-//        let compMinute = calendar.component(NSCalendarUnit.Minute, fromDate: self)
-//        let compHour = calendar.component(NSCalendarUnit.Minute, fromDate: self)
-
-        let date = calendar.dateBySettingHour(0, minute: 0, second: 0, ofDate: self, options: NSCalendarOptions.MatchNextTimePreservingSmallerUnits)
-        
-        return  formatter.stringFromDate(date!) //calendar.dateFromComponents(components) //formatter.stringFromDate(self)
-    }
-    
     
      func dateToString() -> String{
         let formatter = NSDateFormatter()
-        formatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSS'Z'" //"yyyy-MM-dd'T'HH:mm:ss:SSSZ"
+        formatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSS'Z'"
         return formatter.stringFromDate(self)
      }
     
     func stringToDate(dateString: String) -> NSDate{
         let formatter = NSDateFormatter()
-        formatter.dateFormat =  "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSS'Z'" //"yyyy-MM-dd'T'HH:mm:ss:SSSZ"
+        formatter.dateFormat =  "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSS'Z'"
         return formatter.dateFromString(dateString)!
     }
     

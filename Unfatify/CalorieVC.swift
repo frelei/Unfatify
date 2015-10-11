@@ -8,8 +8,12 @@
 
 import UIKit
 
-class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, EntryDelegate {
 
+    // MARK: MESSAGES
+    let messageTitle = "Unfatify"
+    let messageDelete = "Ops!!! Error to delete entry"
+    
     // MARK: ATTRIBUTES
     var user: User?
     var meals = NSMutableArray()
@@ -28,9 +32,11 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let keychainService = KeychainService()
         let token = keychainService.getToken()
         user = User.currentUser(token!)
+        
         self.loadData()
     }
     
@@ -61,6 +67,10 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
         })
     }
+    
+    // TODO: RELOAD
+    
+    
     
     // MARK: TABLEVIEW DELEGATE
     
@@ -114,7 +124,8 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 parseAPI.deleteObject("UserMeal", objectId: meal.objectId!, data: nil, success: { (data) -> Void in
                         tableView.reloadData()
                     }, failure: { (error) -> Void in
-                            // TODO: SHOW MESSAGE ERROR
+                        let  alertController = UIAlertController.basicMessage(self.messageTitle, message: self.messageDelete)
+                        self.presentViewController(alertController, animated: true, completion: nil)
                     })
             }
         
@@ -129,9 +140,7 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     // MARK: IBACTIONS
     
     @IBAction func touchAddMeal(sender: AnyObject) {
-        
-        
-        
+        self.performSegueWithIdentifier("goToEntry", sender: user)
     }
     
     
@@ -140,16 +149,26 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: ENTRY DELEGATE
+    func entryDidFinish(entryVC: EntryVC, result: Bool) {
+        entryVC.dismissViewControllerAnimated(true, completion: nil)
+        if result{
+            self.loadData()
+        }
     }
-    */
+    
+    
+    // MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "goToEntry"{
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let entryVC = navigationController.viewControllers.first as! EntryVC
+            entryVC.delegate = self
+            entryVC.user = sender as? User
+        }else{
+            
+        }
+    }
+    
 
 }

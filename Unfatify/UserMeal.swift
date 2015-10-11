@@ -29,11 +29,9 @@ class UserMeal {
         self.userPointer = userPointer
     }
     
-    
+
     // MARK: HELPER METHODS
-    
     class func jsonToUserMeal(data: [String:AnyObject]) -> UserMeal{
-        
         return UserMeal.init(objectId: data["objectId"] as? String,
                              name: data["name"] as? String,
                              calorie: data["calorie"] as? NSNumber,
@@ -44,7 +42,6 @@ class UserMeal {
     }
     
     class func userMealToJson(userMeal: UserMeal, objectId:String) -> [String:AnyObject]{
-        
         return ["name": userMeal.name as! AnyObject,
                 "calorie": userMeal.calorie as! AnyObject,
                 "date":  userMeal.date as! AnyObject,
@@ -52,7 +49,7 @@ class UserMeal {
     }
     
     class func createUserPointer(objectId: String) -> [String:AnyObject]{
-        return ["user":["__type":"Pointer", "className":"User", "objectId":objectId]]
+        return  ["__type":"Pointer","className":"_User","objectId":objectId]
     }
     
     
