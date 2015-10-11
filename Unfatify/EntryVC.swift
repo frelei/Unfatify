@@ -68,7 +68,6 @@ class EntryVC: UIViewController, UITextFieldDelegate {
                 return
         }
         
-        // "__type":"Pointer", "className":"_User", "objectId":objectId
         let meal = ["name":name.text as! AnyObject,
                     "calorie": Int(calorie.text!) as! AnyObject,
                     "user": ["__type":"Pointer","className":"_User","objectId":(user?.objectID)!]]        

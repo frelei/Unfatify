@@ -13,6 +13,7 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
     // MARK: MESSAGES
     let messageTitle = "Unfatify"
     let messageDelete = "Ops!!! Error to delete entry"
+    let messageServer = "Ops!!! Unable to connect to server"
     
     // MARK: ATTRIBUTES
     var user: User?
@@ -52,19 +53,23 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
     
     // MARK: LOAD DATA
     func loadData(){
+        // Create Date
+        let cal: NSCalendar = NSCalendar.currentCalendar()
+        let newDate = cal.dateBySettingHour(0, minute: 0, second: 0, ofDate: NSDate(), options: NSCalendarOptions())!
         // Create Query
         let query = Query()
         query.addPointer("_User", objectId: (user?.objectID)!, column: "user")
-        query.addDateGte( NSDate().dateToString() , column: "createdAt")
+        query.addDateGte( newDate.dateToString() , column: "createdAt")
         
         let queryData = query.getQuery().stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())!
         let parseAPI = ParseAPI()
         parseAPI.queryObjects("UserMeal?"+queryData, whereClause: nil,
             success: { (data) -> Void in
                 self.meals =  NSMutableArray(array: data as! NSArray)
-                self.tableView.reloadData()
+                self.tableView.reloadSections(NSIndexSet.init(index: 0), withRowAnimation: UITableViewRowAnimation.Middle)
             }, failure: { (error) -> Void in
-                
+                let  alertController = UIAlertController.basicMessage(self.messageTitle, message: self.messageServer)
+                self.presentViewController(alertController, animated: true, completion: nil)
         })
     }
     
@@ -145,7 +150,7 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
     
     
     @IBAction func touchProfile(sender: UIButton) {
-        self.performSegueWithIdentifier("goToProfile", sender: self.user)
+        self.performSegueWithIdentifier("goToSetting", sender: self.user)
     }
     
     
@@ -166,7 +171,8 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
             entryVC.delegate = self
             entryVC.user = sender as? User
         }else{
-            
+            let settingVC = segue.destinationViewController as! SettingVC
+            settingVC.user = sender as? User
         }
     }
     

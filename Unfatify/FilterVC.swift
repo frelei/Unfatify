@@ -10,15 +10,17 @@ import UIKit
 
 class FilterVC: UIViewController {
 
+    // MARK: ATTRIBUTE
+    var user: User?
+    
+    // MARK: LIFE CYCLE VC
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.navigationController?.navigationBarHidden = true
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
 
