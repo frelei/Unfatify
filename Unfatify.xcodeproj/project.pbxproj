@@ -31,6 +31,8 @@
 		5BA28FE71BC9F76300F2FFCC /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA28FE61BC9F76300F2FFCC /* Query.swift */; settings = {ASSET_TAGS = (); }; };
 		5BA28FE91BC9FF5C00F2FFCC /* QueryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA28FE81BC9FF5C00F2FFCC /* QueryTest.swift */; settings = {ASSET_TAGS = (); }; };
 		5BA28FEB1BCAB06500F2FFCC /* EntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA28FEA1BCAB06500F2FFCC /* EntryVC.swift */; settings = {ASSET_TAGS = (); }; };
+		5BE2F53C1BCAE7CE0056495C /* GoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2F53B1BCAE7CE0056495C /* GoalVC.swift */; settings = {ASSET_TAGS = (); }; };
+		5BE2F5401BCAEB540056495C /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2F53F1BCAEB540056495C /* FilterVC.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		5BA28FE61BC9F76300F2FFCC /* Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
 		5BA28FE81BC9FF5C00F2FFCC /* QueryTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryTest.swift; sourceTree = "<group>"; };
 		5BA28FEA1BCAB06500F2FFCC /* EntryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryVC.swift; sourceTree = "<group>"; };
+		5BE2F53B1BCAE7CE0056495C /* GoalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalVC.swift; sourceTree = "<group>"; };
+		5BE2F53F1BCAEB540056495C /* FilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		814AA809945195AC0D5D89BE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -247,6 +251,8 @@
 				5BA152491BC5C91A00D1494F /* CalorieVC.swift */,
 				5B039DC31BC851650075DBA4 /* SettingVC.swift */,
 				5BA28FEA1BCAB06500F2FFCC /* EntryVC.swift */,
+				5BE2F53B1BCAE7CE0056495C /* GoalVC.swift */,
+				5BE2F53F1BCAEB540056495C /* FilterVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -415,11 +421,13 @@
 				5BA1524D1BC5CA4800D1494F /* PieChartView.swift in Sources */,
 				5B08E9E71BC2E46D00A923D8 /* WebService.swift in Sources */,
 				5B55DADE1BBF18B600743C6C /* AppDelegate.swift in Sources */,
+				5BE2F53C1BCAE7CE0056495C /* GoalVC.swift in Sources */,
 				5BA1524A1BC5C91A00D1494F /* CalorieVC.swift in Sources */,
 				5B043CD31BC73A9E00977C88 /* Meal.swift in Sources */,
 				5B043CD51BC74A5D00977C88 /* KeychainService.swift in Sources */,
 				5BA152461BC5C8C500D1494F /* SignInVC.swift in Sources */,
 				5BA152481BC5C8D300D1494F /* SignUpVC.swift in Sources */,
+				5BE2F5401BCAEB540056495C /* FilterVC.swift in Sources */,
 				5BA28FE71BC9F76300F2FFCC /* Query.swift in Sources */,
 				5B043CD11BC73A9100977C88 /* UserMeal.swift in Sources */,
 				5B2F95C41BC2F15B008B1E5A /* ParseAPI.swift in Sources */,

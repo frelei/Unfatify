@@ -125,8 +125,9 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 calorieVC.user = user
                 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
-                UIView.transitionWithView(self.view, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromBottom, animations: { () -> Void in
-                        appDelegate.window?.rootViewController = navigationController
+                UIView.transitionWithView(self.view, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromLeft,
+                        animations: { () -> Void in
+                            appDelegate.window?.rootViewController = navigationController
                     }, completion: nil)
             
             
