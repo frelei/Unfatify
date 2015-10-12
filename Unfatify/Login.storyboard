@@ -109,6 +109,22 @@
                                     <action selector="signin:" destination="loN-kK-wKY" eventType="touchUpInside" id="YzL-kt-pOy"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NZW-4i-msU">
+                                <rect key="frame" x="235" y="303" width="130" height="100"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ubp-QI-bIY">
+                                        <rect key="frame" x="47" y="31" width="37" height="37"/>
+                                        <animations/>
+                                        <color key="color" red="1" green="0.56470588235294117" blue="0.035294117647058823" alpha="1" colorSpace="calibratedRGB"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" red="0.58823529411764708" green="0.58823529411764708" blue="0.58823529411764708" alpha="0.26365802304964536" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="Ghf-t0-MCY"/>
+                                    <constraint firstAttribute="height" constant="100" id="XOc-Ld-tvs"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <animations/>
                         <constraints>
@@ -127,8 +143,10 @@
                             <constraint firstItem="QDs-wv-flO" firstAttribute="centerX" secondItem="CzX-Pd-o9S" secondAttribute="centerX" id="bXi-51-TAt"/>
                             <constraint firstItem="C7V-j3-65w" firstAttribute="centerY" secondItem="CzX-Pd-o9S" secondAttribute="centerY" id="ii5-Dv-aUf"/>
                             <constraint firstItem="C7V-j3-65w" firstAttribute="centerX" secondItem="CzX-Pd-o9S" secondAttribute="centerX" id="j3w-XD-ZXZ"/>
+                            <constraint firstItem="NZW-4i-msU" firstAttribute="top" secondItem="Ucy-Nh-Sea" secondAttribute="bottom" constant="239" id="mFW-o2-6If"/>
                             <constraint firstItem="C7V-j3-65w" firstAttribute="top" secondItem="Ucy-Nh-Sea" secondAttribute="bottom" constant="-64" id="mbg-zv-9AU"/>
                             <constraint firstItem="ddb-Bb-L2i" firstAttribute="top" secondItem="pQg-YX-QGB" secondAttribute="bottom" constant="8" id="mj1-cJ-szX"/>
+                            <constraint firstItem="NZW-4i-msU" firstAttribute="centerX" secondItem="CzX-Pd-o9S" secondAttribute="centerX" id="qQi-H8-dtp"/>
                             <constraint firstItem="vLq-Vz-E5y" firstAttribute="top" secondItem="Ucy-Nh-Sea" secondAttribute="bottom" constant="32" id="uNJ-p7-jGP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pQg-YX-QGB" secondAttribute="trailing" id="voX-OG-tUV"/>
                             <constraint firstItem="QDs-wv-flO" firstAttribute="top" secondItem="vLq-Vz-E5y" secondAttribute="bottom" constant="18" id="weX-4M-612"/>
@@ -144,6 +162,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="2LX-oy-Neh"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="NZW-4i-msU" id="nF4-Oh-8dZ"/>
                         <outlet property="txtPassword" destination="ddb-Bb-L2i" id="eNP-Ts-jZ1"/>
                         <outlet property="txtUsername" destination="pQg-YX-QGB" id="9Vn-Vl-Lbc"/>
                         <segue destination="mVx-xV-Tw1" kind="show" identifier="goToSignUp" id="WY5-FO-Enq"/>
@@ -290,12 +309,29 @@
                                     <action selector="signUp:" destination="mVx-xV-Tw1" eventType="touchUpInside" id="xB5-sa-VZb"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7DV-Ma-08N">
+                                <rect key="frame" x="235" y="273" width="130" height="100"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Vfl-rC-CMG">
+                                        <rect key="frame" x="47" y="31" width="37" height="37"/>
+                                        <animations/>
+                                        <color key="color" red="1" green="0.56470588239999997" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" red="0.58823529409999997" green="0.58823529409999997" blue="0.58823529409999997" alpha="0.26365802300000002" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="3b7-Z2-SKH"/>
+                                    <constraint firstAttribute="width" constant="130" id="CRC-g3-e31"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="UEn-x6-nld" firstAttribute="centerX" secondItem="Wz9-JP-rKe" secondAttribute="centerX" id="4Jx-Cf-XFu"/>
                             <constraint firstItem="UEn-x6-nld" firstAttribute="top" secondItem="RU2-Mb-6vk" secondAttribute="bottom" constant="8" id="5dr-nM-mYV"/>
+                            <constraint firstItem="7DV-Ma-08N" firstAttribute="top" secondItem="hhA-yQ-Jxd" secondAttribute="bottom" constant="209" id="97f-w8-lsb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="UEn-x6-nld" secondAttribute="trailing" id="B41-Y7-wPb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zNf-NL-Ntl" secondAttribute="trailing" constant="-20" id="DQu-JR-czb"/>
                             <constraint firstItem="Sxa-M2-zy0" firstAttribute="top" secondItem="tBn-fh-lao" secondAttribute="bottom" constant="13" id="GfQ-ck-XXH"/>
@@ -305,6 +341,7 @@
                             <constraint firstItem="rVl-sK-9a2" firstAttribute="leading" secondItem="Wz9-JP-rKe" secondAttribute="leadingMargin" id="Rit-Ev-Zrv"/>
                             <constraint firstItem="Sxa-M2-zy0" firstAttribute="centerX" secondItem="Wz9-JP-rKe" secondAttribute="centerX" id="TLi-qs-DWc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rVl-sK-9a2" secondAttribute="trailing" id="TdH-BS-OFo"/>
+                            <constraint firstItem="7DV-Ma-08N" firstAttribute="centerX" secondItem="Wz9-JP-rKe" secondAttribute="centerX" id="Y8f-FQ-Rfr"/>
                             <constraint firstAttribute="leadingMargin" secondItem="uae-4o-Pfa" secondAttribute="leading" constant="14" id="YMW-GL-ekZ"/>
                             <constraint firstItem="vNQ-VT-dOu" firstAttribute="centerX" secondItem="Wz9-JP-rKe" secondAttribute="centerX" id="Yf2-4H-kcz"/>
                             <constraint firstItem="5nz-xc-aZV" firstAttribute="leading" secondItem="Wz9-JP-rKe" secondAttribute="leadingMargin" id="ZWo-6C-oro"/>
@@ -329,6 +366,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="7DV-Ma-08N" id="9KM-k9-fin"/>
                         <outlet property="txtDailyCalories" destination="UEn-x6-nld" id="3QX-6S-vJD"/>
                         <outlet property="txtEmail" destination="rVl-sK-9a2" id="0lf-Bo-4Zf"/>
                         <outlet property="txtPassword" destination="5nz-xc-aZV" id="LFo-OS-XGL"/>

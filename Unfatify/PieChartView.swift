@@ -23,8 +23,7 @@ class PieChartView: UIView {
     @IBInspectable var backgroundColorView: UIColor!
     
     @IBInspectable
-    var piePercentage: Double = 10
-    {
+    var piePercentage: Double = 10{
         willSet(newPiePercent){ updatePiePercentage(newPiePercent) }
     }
     

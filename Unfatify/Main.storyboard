@@ -385,6 +385,22 @@
                                     <action selector="touchAddMeal:" destination="rKL-gm-xgx" eventType="touchUpInside" id="mEV-MA-Y52"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KcC-0j-vbR">
+                                <rect key="frame" x="235" y="273" width="130" height="100"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="jqV-vg-6Ty">
+                                        <rect key="frame" x="47" y="31" width="37" height="37"/>
+                                        <animations/>
+                                        <color key="color" red="1" green="0.56470588235294117" blue="0.035294117647058823" alpha="1" colorSpace="calibratedRGB"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <animations/>
+                                <color key="backgroundColor" red="0.58823529411764708" green="0.58823529411764708" blue="0.58823529411764708" alpha="0.25684286347517732" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Lzy-Df-v2O"/>
+                                    <constraint firstAttribute="width" constant="130" id="XeJ-Zd-5N0"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -394,9 +410,11 @@
                             <constraint firstItem="ezK-Se-WSR" firstAttribute="centerX" secondItem="A4r-QF-AfC" secondAttribute="centerX" id="2xd-AS-87Q"/>
                             <constraint firstItem="ezK-Se-WSR" firstAttribute="top" secondItem="hKy-3P-nZh" secondAttribute="bottom" constant="-64" id="3O7-4v-00Z"/>
                             <constraint firstItem="XcH-rr-jjy" firstAttribute="top" secondItem="ezK-Se-WSR" secondAttribute="bottom" id="9u7-QH-tj6"/>
+                            <constraint firstItem="KcC-0j-vbR" firstAttribute="top" secondItem="hKy-3P-nZh" secondAttribute="bottom" constant="209" id="E1h-oB-PBs"/>
                             <constraint firstItem="tTp-OD-L2E" firstAttribute="top" secondItem="hKy-3P-nZh" secondAttribute="bottom" constant="-1" id="EMS-ui-0Lq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tTp-OD-L2E" secondAttribute="trailing" constant="-12" id="Lwv-Ai-3wX"/>
                             <constraint firstItem="ta2-WO-Taz" firstAttribute="top" secondItem="XcH-rr-jjy" secondAttribute="bottom" constant="43" id="THy-Uz-Kew"/>
+                            <constraint firstItem="KcC-0j-vbR" firstAttribute="centerX" secondItem="A4r-QF-AfC" secondAttribute="centerX" id="Xmd-9q-dcN"/>
                             <constraint firstItem="jb8-4O-tFM" firstAttribute="centerX" secondItem="A4r-QF-AfC" secondAttribute="centerX" id="eBc-Ce-NYg"/>
                             <constraint firstItem="ta2-WO-Taz" firstAttribute="top" secondItem="jb8-4O-tFM" secondAttribute="bottom" id="ec2-nB-gk9"/>
                             <constraint firstAttribute="trailingMargin" secondItem="XcH-rr-jjy" secondAttribute="trailing" constant="-20" id="jWm-Xi-qp4"/>
@@ -409,6 +427,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="bWq-II-3mx"/>
                     <connections>
+                        <outlet property="activityView" destination="KcC-0j-vbR" id="ZHi-qT-3Ls"/>
                         <outlet property="lblEaten" destination="lvN-uH-NsF" id="zDD-KI-Ccu"/>
                         <outlet property="lblExcceded" destination="pzR-zP-1m6" id="NIu-ii-ekD"/>
                         <outlet property="lblKcalLeft" destination="X9B-d1-Dvy" id="eE0-bf-kk2"/>

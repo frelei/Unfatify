@@ -327,6 +327,7 @@
 				TargetAttributes = {
 					5B55DAD91BBF18B600743C6C = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = JDHZUL2R55;
 					};
 					5B55DAED1BBF18B600743C6C = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -571,6 +572,7 @@
 			baseConfigurationReference = 3DB11435A1C3C0C0AC95F008 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Unfatify/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -585,11 +587,13 @@
 			baseConfigurationReference = 814AA809945195AC0D5D89BE /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Unfatify/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kobe.Unfatify;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e284cf55-4127-4093-92e0-91fdf35f5b33";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

@@ -37,6 +37,13 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     }
     
     
+    @IBOutlet weak var activityIndicator: UIView!{
+        didSet{
+            activityIndicator.hidden = true
+            activityIndicator.layer.cornerRadius = 25
+        }
+    }
+    
     // MARK: LIFE CYCLE VC
     
     override func viewDidLoad() {
@@ -105,6 +112,13 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 return
         }
         
+        // Start Loader
+        self.activityIndicator.hidden = false
+        let activity = self.activityIndicator.viewWithTag(1) as! UIActivityIndicatorView
+        activity.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+        
+        
         let user = ["username":username.text as! AnyObject,
             "password":password.text as! AnyObject,
             "email":email.text as! AnyObject,
@@ -130,18 +144,19 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 let calorieVC = navigationController.viewControllers.first as! CalorieVC
                 calorieVC.user = user
                 let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-
-                UIView.transitionWithView(self.view, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromLeft,
-                        animations: { () -> Void in
-                            appDelegate.window?.rootViewController = navigationController
-                    }, completion: nil)
             
+                UIView.transitionFromView(self.view, toView: calorieVC.view, duration: 0.5, options: .TransitionFlipFromRight, completion: { (result) -> Void in
+                        appDelegate.window?.rootViewController = navigationController
+                self.activityIndicator.hidden = true
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
+                })
             
             }, failure: { (error) -> Void in
+                self.activityIndicator.hidden = true
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
                 let  alertController = UIAlertController.basicMessage(self.titleWarinig, message: self.messageErrorServer)
                 self.presentViewController(alertController, animated: true, completion: nil)
         })
-        
     }
     
     

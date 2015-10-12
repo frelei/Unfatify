@@ -61,9 +61,10 @@ class SettingVC: UIViewController, GoalDelegate {
         let keychainService = KeychainService()
         let token = keychainService.getToken()
         
-        // Get login Storyboard
+        // Get signIn Storyboard
         let storyboard = UIStoryboard.init(name: "Login", bundle: nil)
         let navigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+        let signIn = navigationController.viewControllers.first as! SignInVC
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         let parseAPI = ParseAPI()
@@ -72,12 +73,17 @@ class SettingVC: UIViewController, GoalDelegate {
             }, failure: { (error) -> Void in
                 
             })
-        
         keychainService.deleteToken()
         UIView.transitionWithView(self.view, duration: 1.0, options: UIViewAnimationOptions.TransitionFlipFromRight,
             animations: { () -> Void in
                 appDelegate.window?.rootViewController = navigationController
             }, completion: nil)
+        
+        UIView.transitionFromView(self.view, toView: signIn.view, duration: 0.5, options: .TransitionFlipFromLeft,
+                completion: { (result) -> Void in
+                    appDelegate.window?.rootViewController = navigationController
+        })
+        
     }
     
     
@@ -100,8 +106,6 @@ class SettingVC: UIViewController, GoalDelegate {
         self.performSegueWithIdentifier("goToManager", sender: user)
     }
     
-    
-    
     // MARK: GoalDelegate
     func goalDidFinish(goalVC:GoalVC, result:Bool){
         self.navigationController?.popViewControllerAnimated(true)
@@ -113,7 +117,6 @@ class SettingVC: UIViewController, GoalDelegate {
             self.presentViewController(alertController, animated: true, completion: nil)
         }
     }
-    
     
     // MARK: Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -128,7 +131,6 @@ class SettingVC: UIViewController, GoalDelegate {
         }else if segue.identifier == "goToManager"{
             let navigationController = segue.destinationViewController as! UINavigationController
             let managerVC = navigationController.viewControllers.first as! ManagerVC
-//            managerVC.delegate = self
             managerVC.user = sender as? User
         }
     }

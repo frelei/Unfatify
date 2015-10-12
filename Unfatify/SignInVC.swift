@@ -19,7 +19,7 @@ class SignInVC: UIViewController, UITextFieldDelegate {
     let messageErrorServer  = "Ops! Server error on sign up, please try again"
     
     var selectedTextField = 0
-    var gap = 2.5
+    var gap = 3.5
     
     // MARK: IBOUTLETS
     @IBOutlet weak var txtUsername: UITextField! {
@@ -29,6 +29,15 @@ class SignInVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var txtPassword: UITextField! {
         didSet { txtPassword.delegate = self }
     }
+    
+    @IBOutlet weak var activityIndicator: UIView!{
+        didSet{
+            activityIndicator.hidden = true
+            activityIndicator.layer.cornerRadius = 25
+        }
+    }
+    
+    
     
     
     // MARK: LIFE CYCLE VC
@@ -100,6 +109,11 @@ class SignInVC: UIViewController, UITextFieldDelegate {
                                 self.presentViewController(alertController, animated: true, completion: nil)
                                 return
                             }
+        // Start Loader
+        self.activityIndicator.hidden = false
+        let activity = self.activityIndicator.viewWithTag(1) as! UIActivityIndicatorView
+        activity.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
         
         let parseAPI = ParseAPI()
         parseAPI.signIn(username.text!, password: password.text!, success: { (data) -> Void in
@@ -116,13 +130,16 @@ class SignInVC: UIViewController, UITextFieldDelegate {
             calorieVC.user = user
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             
-            UIView.transitionWithView(self.view, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromLeft, animations: { () -> Void in
-                
-                }, completion: { (result) -> Void in
-                    appDelegate.window?.rootViewController = navigationController
+            UIView.transitionFromView(self.view, toView: calorieVC.view, duration: 0.5, options: .TransitionFlipFromRight, completion: { (result) -> Void in
+                appDelegate.window?.rootViewController = navigationController
+                self.activityIndicator.hidden = true
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
             })
             
+            
             }, failure: { (error) -> Void in
+                self.activityIndicator.hidden = false
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
                 let  alertController = UIAlertController.basicMessage(self.titleWarinig, message: self.messageWarning)
                 self.presentViewController(alertController, animated: true, completion: nil)
         })

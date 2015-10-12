@@ -33,6 +33,14 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
     @IBOutlet weak var lblExcceded: UILabel!
     @IBOutlet weak var pieChartView: PieChartView!
     
+    @IBOutlet weak var activityView: UIView!{
+        didSet{
+            activityView.hidden = true
+            activityView.layer.cornerRadius = 25
+        }
+    }
+    
+    
     // MARK: LIFE CYCLE VC
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,15 +77,26 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
         let query = Query()
         query.addPointer("_User", objectId: (user?.objectID)!, column: "user")
         query.addDateGte( newDate.dateToString() , column: "createdAt")
+        let queryData = query.getQueryEncoded()
         
-        let queryData = query.getQueryEncoded() 
+        // Start Loader
+        self.activityView.hidden = false
+        let activity = self.activityView.viewWithTag(1) as! UIActivityIndicatorView
+        activity.startAnimating()
+        UIApplication.sharedApplication().beginIgnoringInteractionEvents()
+
+        
         let parseAPI = ParseAPI()
         parseAPI.queryObjects("UserMeal?"+queryData, whereClause: nil,
             success: { (data) -> Void in
                 self.meals =  NSMutableArray(array: data as! NSArray)
                 self.tableView.reloadSections(NSIndexSet.init(index: 0), withRowAnimation: UITableViewRowAnimation.Middle)
+                self.activityView.hidden = true
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
                 self.animation()
             }, failure: { (error) -> Void in
+                self.activityView.hidden = true
+                UIApplication.sharedApplication().endIgnoringInteractionEvents()
                 let  alertController = UIAlertController.basicMessage(self.messageTitle, message: self.messageServer)
                 self.presentViewController(alertController, animated: true, completion: nil)
         })
