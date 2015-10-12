@@ -25,8 +25,7 @@ class Query {
     func addPointer(className:String, objectId:String, column:String){
         self.query += "\"\(column)\":{\"__type\":\"Pointer\",\"className\":\"\(className)\",\"objectId\":\"\(objectId)\"},"
     }
-    
-    
+
     func addDateGte(date:String, column:String){
         self.query += "\"\(column)\":{\"$gte\":{\"__type\":\"Date\",\"iso\":\"\(date)\"}},"
     }

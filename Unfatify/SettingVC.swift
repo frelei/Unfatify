@@ -19,13 +19,29 @@ class SettingVC: UIViewController, GoalDelegate {
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblImage: UIImageView!
     @IBOutlet weak var lblGoal: UILabel!
+    @IBOutlet weak var manager: UIButton!
     
     
     // MARK: LIFE CYCLE VC
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = true
-
+        self.manager.hidden = true
+        
+        let parseAPI = ParseAPI()
+        parseAPI.rolesByName("Manager",
+            success: { (data) -> Void in
+                let roles = data as! [[String:AnyObject]]
+                for value in roles{
+                    print(value["ACL"]!["\(self.user?.objectID!)"])
+                    if value["ACL"]!["\(self.user?.objectID!)"]! != nil{
+                        self.manager.hidden = false
+                        break;
+                    }
+                }
+            }, failure: { (error) -> Void in
+                   self.manager.hidden = false
+        })
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -37,6 +53,9 @@ class SettingVC: UIViewController, GoalDelegate {
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
+    
+    
+    
     
     // MARK: IBACTIONS
     @IBAction func touchChangeGoal(sender: UIButton) {
@@ -61,7 +80,7 @@ class SettingVC: UIViewController, GoalDelegate {
             })
         
         keychainService.deleteToken()
-        UIView.transitionWithView(self.view, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromRight,
+        UIView.transitionWithView(self.view, duration: 1.0, options: UIViewAnimationOptions.TransitionFlipFromRight,
             animations: { () -> Void in
                 appDelegate.window?.rootViewController = navigationController
             }, completion: nil)
@@ -81,6 +100,12 @@ class SettingVC: UIViewController, GoalDelegate {
     @IBAction func touchClose(sender: UIButton) {
         self.navigationController?.popViewControllerAnimated(true)
     }
+    
+    
+    @IBAction func touchManager(sender: UIButton) {
+        
+    }
+    
     
     
     // MARK: GoalDelegate

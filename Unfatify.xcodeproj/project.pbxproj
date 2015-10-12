@@ -34,6 +34,7 @@
 		5BE2F53C1BCAE7CE0056495C /* GoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2F53B1BCAE7CE0056495C /* GoalVC.swift */; settings = {ASSET_TAGS = (); }; };
 		5BE2F5401BCAEB540056495C /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2F53F1BCAEB540056495C /* FilterVC.swift */; settings = {ASSET_TAGS = (); }; };
 		5BE2F5421BCB49140056495C /* EditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2F5411BCB49140056495C /* EditVC.swift */; settings = {ASSET_TAGS = (); }; };
+		5BE2F5471BCB79050056495C /* ManagerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2F5461BCB79050056495C /* ManagerVC.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		5BE2F53B1BCAE7CE0056495C /* GoalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalVC.swift; sourceTree = "<group>"; };
 		5BE2F53F1BCAEB540056495C /* FilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		5BE2F5411BCB49140056495C /* EditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditVC.swift; sourceTree = "<group>"; };
+		5BE2F5461BCB79050056495C /* ManagerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerVC.swift; sourceTree = "<group>"; };
 		814AA809945195AC0D5D89BE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -256,6 +258,7 @@
 				5BE2F53B1BCAE7CE0056495C /* GoalVC.swift */,
 				5BE2F53F1BCAEB540056495C /* FilterVC.swift */,
 				5BE2F5411BCB49140056495C /* EditVC.swift */,
+				5BE2F5461BCB79050056495C /* ManagerVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				5B043CCF1BC73A8300977C88 /* User.swift in Sources */,
 				5BA28FEB1BCAB06500F2FFCC /* EntryVC.swift in Sources */,
 				5BA1524F1BC5CC6100D1494F /* Extensions.swift in Sources */,
+				5BE2F5471BCB79050056495C /* ManagerVC.swift in Sources */,
 				5B039DC41BC851650075DBA4 /* SettingVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

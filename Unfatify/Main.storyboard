@@ -999,12 +999,20 @@
                                     <action selector="touchLogout:" destination="0E2-YM-jWy" eventType="touchUpInside" id="bH0-5K-lqg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZ5-2T-chP">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lZ5-2T-chP">
                                 <rect key="frame" x="520" y="80" width="72" height="30"/>
                                 <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="72" id="THb-Gf-1pZ"/>
+                                    <constraint firstAttribute="height" constant="30" id="r8S-3X-CvJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <state key="normal" title="Manager">
                                     <color key="titleColor" red="0.98431372549999996" green="0.98431372549999996" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="touchManager:" destination="0E2-YM-jWy" eventType="touchUpInside" id="V1r-qy-Kwz"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -1019,6 +1027,8 @@
                             <constraint firstAttribute="trailingMargin" secondItem="2ve-It-lZL" secondAttribute="trailing" constant="-20" id="O7F-oI-O5Y"/>
                             <constraint firstItem="Wc0-v7-TJj" firstAttribute="leading" secondItem="jy1-HV-Jkz" secondAttribute="leading" constant="59" id="OoG-z7-eK1"/>
                             <constraint firstItem="49S-ZL-cUo" firstAttribute="centerX" secondItem="jOH-Hg-KA6" secondAttribute="centerX" id="PDf-4j-5x8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lZ5-2T-chP" secondAttribute="trailing" constant="-12" id="QaI-ps-Xlu"/>
+                            <constraint firstItem="lZ5-2T-chP" firstAttribute="top" secondItem="gdH-wK-Z3w" secondAttribute="bottom" constant="16" id="QdP-TE-Xd0"/>
                             <constraint firstAttribute="leadingMargin" secondItem="odY-3p-yjS" secondAttribute="leading" id="Rqy-8x-SSK"/>
                             <constraint firstItem="Kxg-HX-e26" firstAttribute="centerX" secondItem="jOH-Hg-KA6" secondAttribute="centerX" id="U6X-E8-KDk"/>
                             <constraint firstItem="hKK-0F-zgl" firstAttribute="top" secondItem="9Qw-XC-cnj" secondAttribute="bottom" constant="8" id="WrZ-O2-aUI"/>
@@ -1044,6 +1054,7 @@
                         <outlet property="lblName" destination="odY-3p-yjS" id="S8h-IS-sGS"/>
                         <segue destination="XcA-gm-gQ9" kind="presentation" identifier="goToFilter" id="Sku-Vq-sIg"/>
                         <segue destination="oEF-tj-MYu" kind="show" identifier="goToChangeGoal" id="xYO-WJ-T0S"/>
+                        <segue destination="2HH-p2-k6D" kind="presentation" identifier="goToManager" id="w3g-j4-efz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B3J-kt-4lO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1106,6 +1117,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dbO-vA-ASx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3866" y="328"/>
+        </scene>
+        <!--ManagerVC-->
+        <scene sceneID="Fax-sW-w1D">
+            <objects>
+                <viewController id="7Xd-fT-tbQ" customClass="ManagerVC" customModule="Unfatify" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QI3-fy-MCu"/>
+                        <viewControllerLayoutGuide type="bottom" id="TvL-EZ-8xa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iVy-mb-Lvm">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="BKF-Uz-1XS"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cwF-Yd-JAc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4678" y="1081"/>
         </scene>
         <!--GoalVC-->
         <scene sceneID="YIo-sW-FUq">
@@ -1221,6 +1252,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l7C-D6-Us4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2904" y="-501"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vHI-4Q-0C0">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2HH-p2-k6D" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jv8-Mg-j4Y">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="7Xd-fT-tbQ" kind="relationship" relationship="rootViewController" id="OBZ-q4-oye"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dmE-eb-bMM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3866" y="1081"/>
         </scene>
     </scenes>
     <resources>
