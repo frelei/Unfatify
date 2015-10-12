@@ -68,8 +68,20 @@ extension UIAlertController{
 
 extension NSDate{
     
+    /**
+    Transform the date in string based on Short-Style        
+    */
+    func dateToStringShort() -> String{
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = .ShortStyle
+        formatter.timeStyle = .ShortStyle
+        return formatter.stringFromDate(self)
+    }
     
-     func dateToString() -> String{
+    /**
+        Transform the date in string based on format yyy-MM-dd HH:mm:ss
+    */
+    func dateToString() -> String{
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss.SSS'Z'"
         return formatter.stringFromDate(self)
@@ -92,6 +104,24 @@ extension NSDate{
         let comp = calendar.component(NSCalendarUnit.Minute, fromDate: self)
         return comp
     }
+    
+    func isGreaterThanDate(dateToCompare : NSDate) -> Bool{
+        var isGreater = false
+        if self.compare(dateToCompare) == NSComparisonResult.OrderedDescending{
+            isGreater = true
+        }
+        return isGreater
+    }
+    
+    func isLessThanDate(dateToCompare : NSDate) -> Bool{
+        var isLess = false
+        if self.compare(dateToCompare) == NSComparisonResult.OrderedAscending{
+            isLess = true
+        }
+        return isLess
+    }
+
+    
 }
 
 

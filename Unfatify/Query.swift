@@ -28,15 +28,27 @@ class Query {
     
     
     func addDateGte(date:String, column:String){
-        self.query += "\"\(column)\":{\"$gte\":{\"__type\":\"Date\",\"iso\":\"\(date)\"}}"
+        self.query += "\"\(column)\":{\"$gte\":{\"__type\":\"Date\",\"iso\":\"\(date)\"}},"
+    }
+    
+    func addDateLte(date:String, column:String){
+        self.query += "\"\(column)\":{\"$lte\":{\"__type\":\"Date\",\"iso\":\"\(date)\"}},"
     }
     
     func getQuery() -> String{
         if self.query[self.query.endIndex.predecessor()] == ","{
             self.query = String(self.query.characters.dropLast())
         }
-        self.query += "}"
+            self.query += "}"
         return self.query
     }
 
+    func getQueryEncoded() -> String{
+        if self.query[self.query.endIndex.predecessor()] == ","{
+            self.query = String(self.query.characters.dropLast())
+        }
+            self.query += "}"
+        return  query.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())!
+    }
+    
 }

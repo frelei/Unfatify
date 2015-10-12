@@ -21,7 +21,11 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
     
     // MARK: IBOUTLET
     @IBOutlet weak var tableView: UITableView!{
-        didSet{ tableView.delegate = self; tableView.dataSource = self }
+        didSet{
+                self.tableView.delegate = self
+                self.tableView.dataSource = self
+                self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        }
     }
     
     @IBOutlet weak var lblEaten: UILabel!
@@ -61,7 +65,7 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
         query.addPointer("_User", objectId: (user?.objectID)!, column: "user")
         query.addDateGte( newDate.dateToString() , column: "createdAt")
         
-        let queryData = query.getQuery().stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())!
+        let queryData = query.getQueryEncoded() 
         let parseAPI = ParseAPI()
         parseAPI.queryObjects("UserMeal?"+queryData, whereClause: nil,
             success: { (data) -> Void in
