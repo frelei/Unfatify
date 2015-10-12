@@ -22,6 +22,8 @@ class EntryVC: UIViewController, UITextFieldDelegate {
     // MARK: VARIABLES
     var delegate: EntryDelegate?
     var user: User?
+    var selectedTextField = 0
+    let gap = 4.0
     
     // MARK: IBOUTLET
     @IBOutlet weak var txtFoodName: UITextField!{
@@ -35,6 +37,15 @@ class EntryVC: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = true
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -44,6 +55,19 @@ class EntryVC: UIViewController, UITextFieldDelegate {
     // MARK: TOUCH
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.txtCalorie.resignFirstResponder()
+    }
+    
+    // MARK: KEYBOARD
+    func keyboardWillShow(notification: NSNotification){
+        let info : NSDictionary = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue().size.height
+        let size =   Double(keyboardSize!)  *  Double( Double(self.selectedTextField) / self.gap) // Total of UITextFields
+        self.view.frame.origin.y = 0
+        self.view.frame.origin.y -=  CGFloat(size)
+    }
+    
+    func keyboardWillHide(notification: NSNotification){
+        self.view.frame.origin.y = 0
     }
     
     
@@ -83,15 +107,17 @@ class EntryVC: UIViewController, UITextFieldDelegate {
               })
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    // MARK: UITEXTFIELDELEGATE
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
-    */
-
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        // Get the tag to keyboard not over the textfield
+        self.selectedTextField = textField.tag
+    }
+    
+    
 }

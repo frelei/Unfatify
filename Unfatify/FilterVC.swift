@@ -35,7 +35,6 @@ class FilterVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    
     // MARK: LIFE CYCLE VC
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +74,7 @@ class FilterVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let query = Query()
         query.addDateGte(fromDate.dateToString(), column: "createdAt")
         query.addDateLte(toDate.dateToString(), column: "createdAt")
+        query.addPointer("_User", objectId: (user?.objectID)!, column: "user")
         let queryData = query.getQueryEncoded()
         let parseAPI = ParseAPI()
         parseAPI.queryObjects("UserMeal?"+queryData, whereClause: nil,

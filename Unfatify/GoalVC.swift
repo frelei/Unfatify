@@ -12,7 +12,7 @@ protocol GoalDelegate{
     func goalDidFinish(goalVC:GoalVC, result:Bool)
 }
 
-class GoalVC: UIViewController {
+class GoalVC: UIViewController, UITextFieldDelegate {
 
     // MARK: MESSAGES
     let messageTitle = "Unfatify"
@@ -23,20 +23,51 @@ class GoalVC: UIViewController {
     // MARK: ATTRIBUTES
     var user:User?
     var delegate:GoalDelegate?
+    var selectedTextField = 0
+    let gap = 4.0
     
     // MARK: IBOUTLET
-    
-    @IBOutlet weak var txtNewGoal: UITextField!
+    @IBOutlet weak var txtNewGoal: UITextField!{
+        didSet{ self.txtNewGoal.delegate = self }
+    }
     
     
     // MARK: LIFE CYCLE VC
     override func viewDidLoad() {
         super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
+    
+    // MARK: TOUCH
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.txtNewGoal.resignFirstResponder()
+    }
+    
+    // MARK: KEYBOARD
+    func keyboardWillShow(notification: NSNotification){
+        let info : NSDictionary = notification.userInfo!
+        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue().size.height
+        let size =   Double(keyboardSize!)  *  Double( Double(self.selectedTextField) / self.gap)
+        self.view.frame.origin.y = 0
+        self.view.frame.origin.y -=  CGFloat(size)
+    }
+    
+    func keyboardWillHide(notification: NSNotification){
+        self.view.frame.origin.y = 0
+    }
+    
     
     // MARK: IBACTIONS
     
@@ -68,4 +99,15 @@ class GoalVC: UIViewController {
     }
 
 
+    // MARK: UITEXTFIELDELEGATE
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        // Get the tag to keyboard not over the textfield
+        self.selectedTextField = textField.tag
+    }
+    
 }
