@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, EntryDelegate {
+class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, EntryDelegate, EditDelegate {
 
     // MARK: MESSAGES
     let messageTitle = "Unfatify"
@@ -41,7 +41,6 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
         let keychainService = KeychainService()
         let token = keychainService.getToken()
         user = User.currentUser(token!)
-        
         self.loadData()
     }
     
@@ -137,8 +136,13 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
                         self.presentViewController(alertController, animated: true, completion: nil)
                     })
             }
-        
-        return [deleteAction]
+        let editAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Edit")
+            { (UITableViewRowAction, NSIndexPath) -> Void in
+                let meal =  UserMeal.jsonToUserMeal(self.meals[indexPath.row] as! [String:AnyObject])
+                self.performSegueWithIdentifier("goToEditEntry", sender: meal)
+            }
+        editAction.backgroundColor = UIColor.greenUnfatify()
+        return [editAction, deleteAction]
     }
     
     internal func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -166,6 +170,13 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
         }
     }
     
+    // MARK: EDIT DELEGATE
+    func EditDidFinish(editVC: EditVC, result: Bool){
+        editVC.dismissViewControllerAnimated(true, completion: nil)
+        if result{
+            self.loadData()
+        }
+    }
     
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -174,9 +185,14 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
             let entryVC = navigationController.viewControllers.first as! EntryVC
             entryVC.delegate = self
             entryVC.user = sender as? User
-        }else{
+        }else if segue.identifier == "goToSetting"{
             let settingVC = segue.destinationViewController as! SettingVC
             settingVC.user = sender as? User
+        }else if(segue.identifier == "goToEditEntry"){
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let editVC = navigationController.viewControllers.first as! EditVC
+            editVC.delegate = self
+            editVC.userMeal = sender as? UserMeal
         }
     }
     

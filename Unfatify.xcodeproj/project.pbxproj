@@ -33,6 +33,7 @@
 		5BA28FEB1BCAB06500F2FFCC /* EntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA28FEA1BCAB06500F2FFCC /* EntryVC.swift */; settings = {ASSET_TAGS = (); }; };
 		5BE2F53C1BCAE7CE0056495C /* GoalVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2F53B1BCAE7CE0056495C /* GoalVC.swift */; settings = {ASSET_TAGS = (); }; };
 		5BE2F5401BCAEB540056495C /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2F53F1BCAEB540056495C /* FilterVC.swift */; settings = {ASSET_TAGS = (); }; };
+		5BE2F5421BCB49140056495C /* EditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2F5411BCB49140056495C /* EditVC.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		5BA28FEA1BCAB06500F2FFCC /* EntryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryVC.swift; sourceTree = "<group>"; };
 		5BE2F53B1BCAE7CE0056495C /* GoalVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoalVC.swift; sourceTree = "<group>"; };
 		5BE2F53F1BCAEB540056495C /* FilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
+		5BE2F5411BCB49140056495C /* EditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditVC.swift; sourceTree = "<group>"; };
 		814AA809945195AC0D5D89BE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -253,6 +255,7 @@
 				5BA28FEA1BCAB06500F2FFCC /* EntryVC.swift */,
 				5BE2F53B1BCAE7CE0056495C /* GoalVC.swift */,
 				5BE2F53F1BCAEB540056495C /* FilterVC.swift */,
+				5BE2F5411BCB49140056495C /* EditVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				5BA152461BC5C8C500D1494F /* SignInVC.swift in Sources */,
 				5BA152481BC5C8D300D1494F /* SignUpVC.swift in Sources */,
 				5BE2F5401BCAEB540056495C /* FilterVC.swift in Sources */,
+				5BE2F5421BCB49140056495C /* EditVC.swift in Sources */,
 				5BA28FE71BC9F76300F2FFCC /* Query.swift in Sources */,
 				5B043CD11BC73A9100977C88 /* UserMeal.swift in Sources */,
 				5B2F95C41BC2F15B008B1E5A /* ParseAPI.swift in Sources */,
