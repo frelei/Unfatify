@@ -19,7 +19,6 @@ class PieChartView: UIView {
     private var pieOverlay : CAShapeLayer!
     private var lineWith: Double = 0.0
     
-    @IBInspectable var background: UIColor!
     @IBInspectable var backgroundOverlay: UIColor!
     @IBInspectable var backgroundColorView: UIColor!
     
@@ -32,11 +31,10 @@ class PieChartView: UIView {
     //MARK: DRAWING
     override func layoutSubviews() {
         super.layoutSubviews()
-//        self.backgroundColor = backgroundColorView
         
         backgroundLayer = CAShapeLayer()
         pieOverlay = CAShapeLayer()
-        lineWith = Double(self.frame.size.width/20)
+        lineWith = Double(self.frame.size.width/30)
         
         layer.addSublayer(backgroundLayer)
         

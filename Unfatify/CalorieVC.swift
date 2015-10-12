@@ -34,13 +34,12 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
     @IBOutlet weak var pieChartView: PieChartView!
     
     // MARK: LIFE CYCLE VC
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let keychainService = KeychainService()
         let token = keychainService.getToken()
         user = User.currentUser(token!)
+        self.initializeCompoenents()
         self.loadData()
     }
     
@@ -51,6 +50,14 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
+    }
+    
+    // INITIALIZER PARAMETER
+    func initializeCompoenents(){
+        self.pieChartView.piePercentage = 0
+        self.lblEaten.text = "0"
+        self.lblKcalLeft.text = "0"
+        self.lblExcceded.text = "0"
     }
     
     // MARK: LOAD DATA
@@ -69,10 +76,31 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
             success: { (data) -> Void in
                 self.meals =  NSMutableArray(array: data as! NSArray)
                 self.tableView.reloadSections(NSIndexSet.init(index: 0), withRowAnimation: UITableViewRowAnimation.Middle)
+                self.animation()
             }, failure: { (error) -> Void in
                 let  alertController = UIAlertController.basicMessage(self.messageTitle, message: self.messageServer)
                 self.presentViewController(alertController, animated: true, completion: nil)
         })
+    }
+    
+    func animation(){
+        let userDailyCalorie = user?.dailyCalorie
+        var eaten = 0
+        for value in self.meals{
+            eaten += value["calorie"]! as! Int
+        }
+        let percentage =  Double(eaten ) / Double(userDailyCalorie!)
+        let leftKcal =  userDailyCalorie as! Int -  Int(eaten )
+        if percentage <= 1.0{
+            self.pieChartView.piePercentage = percentage * 100
+            self.lblEaten.text = "\(eaten )"
+            self.lblKcalLeft.text = "\(leftKcal)"
+        }else{
+            self.pieChartView.piePercentage = 100
+            self.lblKcalLeft.text = "0"
+            self.lblEaten.text = "\(eaten)"
+            self.lblExcceded.text = "\(percentage * Double(eaten))"
+        }
     }
     
     
@@ -153,7 +181,6 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
     @IBAction func touchAddMeal(sender: AnyObject) {
         self.performSegueWithIdentifier("goToEntry", sender: user)
     }
-    
     
     @IBAction func touchProfile(sender: UIButton) {
         self.performSegueWithIdentifier("goToSetting", sender: self.user)
