@@ -29,18 +29,14 @@ class SettingVC: UIViewController, GoalDelegate {
         self.manager.hidden = true
         
         let parseAPI = ParseAPI()
-        parseAPI.rolesByName("Manager",
-            success: { (data) -> Void in
+        parseAPI.rolesUser( (user?.objectID)! , success: { (data) -> Void in
                 let roles = data as! [[String:AnyObject]]
-                for value in roles{
-                    print(value["ACL"]!["\(self.user?.objectID!)"])
-                    if value["ACL"]!["\(self.user?.objectID!)"]! != nil{
-                        self.manager.hidden = false
-                        break;
-                    }
+                let result = roles.filter({  $0["name"] as! String == "Manager" })
+                if result.count != 0 {
+                    self.manager.hidden = false
                 }
             }, failure: { (error) -> Void in
-                   self.manager.hidden = false
+                
         })
     }
     
@@ -53,8 +49,6 @@ class SettingVC: UIViewController, GoalDelegate {
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
-    
-    
     
     
     // MARK: IBACTIONS
@@ -103,7 +97,7 @@ class SettingVC: UIViewController, GoalDelegate {
     
     
     @IBAction func touchManager(sender: UIButton) {
-        
+        self.performSegueWithIdentifier("goToManager", sender: user)
     }
     
     
@@ -130,8 +124,12 @@ class SettingVC: UIViewController, GoalDelegate {
         }else if segue.identifier == "goToFilter"{
             let navigationController = segue.destinationViewController as! UINavigationController
             let filterVC = navigationController.viewControllers.first as! FilterVC
-//            filterVC.delegate = self
             filterVC.user = sender as? User
+        }else if segue.identifier == "goToManager"{
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let managerVC = navigationController.viewControllers.first as! ManagerVC
+//            managerVC.delegate = self
+            managerVC.user = sender as? User
         }
     }
     

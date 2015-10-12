@@ -71,10 +71,12 @@ class EntryVC: UIViewController, UITextFieldDelegate {
         let meal = ["name":name.text as! AnyObject,
                     "calorie": Int(calorie.text!) as! AnyObject,
                     "user": ["__type":"Pointer","className":"_User","objectId":(user?.objectID)!]]        
-        
+
+        let keychainService = KeychainService()
+        let token = keychainService.getToken()
         
         let parseAPI = ParseAPI()
-        parseAPI.createObject("UserMeal", data: meal, success: { (data) -> Void in
+        parseAPI.createObject("UserMeal", token: token!, data: meal, success: { (data) -> Void in
                 self.delegate!.entryDidFinish(self, result: true)
               }, failure: { (error) -> Void in
                 self.delegate!.entryDidFinish(self, result: false)

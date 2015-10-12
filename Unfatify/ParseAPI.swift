@@ -40,10 +40,10 @@ class ParseAPI {
             }
             ```
      */
-    func createObject(className: String, data:[String:AnyObject]?, success:PARSE_SUCCESS, failure: PARSE_ERROR){
+    func createObject(className: String, token: String, data:[String:AnyObject]?, success:PARSE_SUCCESS, failure: PARSE_ERROR){
         let urlPath = PARSE_API_URL + "classes/" + className
         let webService = WebService()
-        let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY]
+        let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY, APP_TOKEN_HEADER: token]
         
         webService.connection(WebServiceConnectionType.POST, url: urlPath, params: data, header: header,
             success: { (JSON) -> Void in
@@ -109,10 +109,10 @@ class ParseAPI {
     -@Parameter failure: Error closure
     -@return: return a dicionary with attribute update value
     */
-    func deleteObject(className: String, objectId: String, data: [String:AnyObject]?, success:PARSE_SUCCESS, failure: PARSE_ERROR){
+    func deleteObject(className: String, token: String, objectId: String, data: [String:AnyObject]?, success:PARSE_SUCCESS, failure: PARSE_ERROR){
         let urlPath = PARSE_API_URL + "classes/" + className + "/" + objectId
         let webService = WebService()
-        let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY]
+        let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY, APP_TOKEN_HEADER: token]
         
         webService.connection(WebServiceConnectionType.DELETE, url: urlPath, params: data, header: header,
             success: { (JSON) -> Void in
@@ -361,13 +361,15 @@ class ParseAPI {
     }
     
     /**
-    Return the roles based on a name
-
-        - @Parameter role:
+    Return the roles of the user
+    
+        -@Parameter string: objectId
+        -@return : An array contain all roles of the user
     */
-    func rolesByName(role:String, success:PARSE_SUCCESS, failure:PARSE_ERROR){
-        let query = "where={\"name\":\"\(role)\"}".stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())!
-        let urlPath = PARSE_API_URL + "roles?" + query
+    func rolesUser(objectId:String, success:PARSE_SUCCESS , failure:PARSE_ERROR){
+        let query = Query()
+        query.addSimpleValue(["users":objectId])
+        let urlPath = PARSE_API_URL + "roles?" + query.getQueryEncoded()
         let webService = WebService()
         let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY]
         
@@ -379,7 +381,22 @@ class ParseAPI {
                 let fail = ERROR as! [String: AnyObject]
                 failure(error: fail)
         })
+    }
+    
+    func basicRoleToUser(objectId:String, success:PARSE_SUCCESS , failure:PARSE_ERROR){
+        let urlPath = PARSE_API_URL + "roles/"+"6oLgt1U7MC"
+        let webService = WebService()
+        let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY]
+        let param = ["users":["__op":"AddRelation","objects":[["__type":"Pointer","className": "_User","objectId":objectId]]]]
         
+        webService.connection(WebServiceConnectionType.PUT, url: urlPath, params: param, header: header,
+            success: { (JSON) -> Void in
+                let object = JSON as! [String:AnyObject]
+                success(data: object)
+            }, failure: { (ERROR) -> Void in
+                let fail = ERROR as! [String: AnyObject]
+                failure(error: fail)
+        })
     }
     
     

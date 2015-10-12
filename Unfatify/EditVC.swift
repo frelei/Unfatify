@@ -51,7 +51,7 @@ class EditVC: UIViewController {
                 return
         }
         
-        guard let calorie = self.txtCalorie where self.txtName.charactersInRange(1)
+        guard let calorie = self.txtCalorie where self.txtCalorie.charactersInRange(1)
             else {
                 let  alertController = UIAlertController.basicMessage(self.titleAlert, message: self.messageField)
                 self.presentViewController(alertController, animated: true, completion: nil)

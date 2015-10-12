@@ -117,7 +117,13 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 // Synchronize token on keychain
                 let keychainService = KeychainService()
                 keychainService.setToken(user.sessionToken!)
-                
+            
+                parseAPI.basicRoleToUser( user.objectID! , success: { (data) -> Void in
+                    
+                    }, failure: { (error) -> Void in
+                        
+                })
+            
                 // go to main screen
                 let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
                 let navigationController = storyboard.instantiateInitialViewController() as! UINavigationController

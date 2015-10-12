@@ -34,6 +34,12 @@ class Query {
         self.query += "\"\(column)\":{\"$lte\":{\"__type\":\"Date\",\"iso\":\"\(date)\"}},"
     }
     
+    func addSimpleValue(object:[String:AnyObject]){
+        for (key,value) in object{
+            self.query += "\"\(key)\":\"\(value)\","
+        }
+    }
+    
     func getQuery() -> String{
         if self.query[self.query.endIndex.predecessor()] == ","{
             self.query = String(self.query.characters.dropLast())

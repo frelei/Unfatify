@@ -12,11 +12,11 @@ class Meal {
 
     let name : String?
     let calorie: Int?
+    let pointerUser: AnyObject?
     
-    init(name: String, calorie: Int){
+    init(name: String, calorie: Int, pointerUser: AnyObject){
         self.name = name
         self.calorie = calorie
+        self.pointerUser = pointerUser
     }
-    
-    
 }

@@ -53,7 +53,6 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
         return UIStatusBarStyle.LightContent
     }
     
-    
     // MARK: LOAD DATA
     func loadData(){
         // Create Date
@@ -75,9 +74,6 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
                 self.presentViewController(alertController, animated: true, completion: nil)
         })
     }
-    
-    // TODO: RELOAD
-    
     
     
     // MARK: TABLEVIEW DELEGATE
@@ -127,10 +123,12 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
     internal func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete")
             { (UITableViewRowAction, NSIndexPath) -> Void in
+                let keychainService = KeychainService()
+                let token = keychainService.getToken()
                 let meal =  UserMeal.jsonToUserMeal(self.meals[indexPath.row] as! [String:AnyObject])
                 let parseAPI = ParseAPI()
-                parseAPI.deleteObject("UserMeal", objectId: meal.objectId!, data: nil, success: { (data) -> Void in
-                        tableView.reloadData()
+                parseAPI.deleteObject("UserMeal", token: token!, objectId: meal.objectId!, data: nil, success: { (data) -> Void in
+                        self.loadData()
                     }, failure: { (error) -> Void in
                         let  alertController = UIAlertController.basicMessage(self.messageTitle, message: self.messageDelete)
                         self.presentViewController(alertController, animated: true, completion: nil)

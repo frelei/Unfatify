@@ -116,10 +116,11 @@ class SignInVC: UIViewController, UITextFieldDelegate {
             calorieVC.user = user
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             
-            UIView.transitionWithView(self.view, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromLeft,
-                    animations: { () -> Void in
-                        appDelegate.window?.rootViewController = navigationController
-                }, completion: nil)
+            UIView.transitionWithView(self.view, duration: 0.5, options: UIViewAnimationOptions.TransitionFlipFromLeft, animations: { () -> Void in
+                
+                }, completion: { (result) -> Void in
+                    appDelegate.window?.rootViewController = navigationController
+            })
             
             }, failure: { (error) -> Void in
                 let  alertController = UIAlertController.basicMessage(self.titleWarinig, message: self.messageWarning)
@@ -140,22 +141,9 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         })
     }
     
-    
-    
     @IBAction func signup(sender: UIButton) {
         self.performSegueWithIdentifier("goToSignUp", sender: nil)
     }
-    
-    
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        // Get the new view controller using segue.destinationViewController.
-//        // Pass the selected object to the new view controller.
-//        if segue.identifier == "goToMainBySignIn"{
-//            
-//        }
-//    }
 
 }

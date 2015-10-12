@@ -35,6 +35,7 @@
 		5BE2F5401BCAEB540056495C /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2F53F1BCAEB540056495C /* FilterVC.swift */; settings = {ASSET_TAGS = (); }; };
 		5BE2F5421BCB49140056495C /* EditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2F5411BCB49140056495C /* EditVC.swift */; settings = {ASSET_TAGS = (); }; };
 		5BE2F5471BCB79050056495C /* ManagerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2F5461BCB79050056495C /* ManagerVC.swift */; settings = {ASSET_TAGS = (); }; };
+		5BE2F5491BCBE7290056495C /* NewMealVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2F5481BCBE7280056495C /* NewMealVC.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +82,7 @@
 		5BE2F53F1BCAEB540056495C /* FilterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		5BE2F5411BCB49140056495C /* EditVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditVC.swift; sourceTree = "<group>"; };
 		5BE2F5461BCB79050056495C /* ManagerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagerVC.swift; sourceTree = "<group>"; };
+		5BE2F5481BCBE7280056495C /* NewMealVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMealVC.swift; sourceTree = "<group>"; };
 		814AA809945195AC0D5D89BE /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -259,6 +261,7 @@
 				5BE2F53F1BCAEB540056495C /* FilterVC.swift */,
 				5BE2F5411BCB49140056495C /* EditVC.swift */,
 				5BE2F5461BCB79050056495C /* ManagerVC.swift */,
+				5BE2F5481BCBE7280056495C /* NewMealVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BE2F5491BCBE7290056495C /* NewMealVC.swift in Sources */,
 				5BA1524D1BC5CA4800D1494F /* PieChartView.swift in Sources */,
 				5B08E9E71BC2E46D00A923D8 /* WebService.swift in Sources */,
 				5B55DADE1BBF18B600743C6C /* AppDelegate.swift in Sources */,
