@@ -38,8 +38,6 @@ class SignInVC: UIViewController, UITextFieldDelegate {
     }
     
     
-    
-    
     // MARK: LIFE CYCLE VC
     
     override func viewDidLoad() {
@@ -148,14 +146,34 @@ class SignInVC: UIViewController, UITextFieldDelegate {
     
     // TODO: Alert
     @IBAction func forgotPassword(sender: UIButton) {
-        let parseAPI = ParseAPI()
-        parseAPI.resetPassword("Email", success: { (data) -> Void in
-            let  alertController = UIAlertController.basicMessage(self.titleWarinig, message: self.messageResetEmail)
-            self.presentViewController(alertController, animated: true, completion: nil)
-        }, failure: { (error) -> Void in
-            let  alertController = UIAlertController.basicMessage(self.titleWarinig, message: self.messageResetEmail)
-            self.presentViewController(alertController, animated: true, completion: nil)
-        })
+        let alertController = UIAlertController(title: "Unfatify", message: "Forget Password", preferredStyle: .Alert)
+        
+        alertController.addTextFieldWithConfigurationHandler { (textField) -> Void in
+            textField.placeholder = "Email"
+        }
+        
+        let forgetPasswordAction = UIAlertAction(title: "Send Email", style: .Default)
+            { (_) in
+                    let loginTextField = alertController.textFields![0] as UITextField
+                
+                let parseAPI = ParseAPI()
+                parseAPI.resetPassword(loginTextField.text!, success: { (data) -> Void in
+                    let  alertController = UIAlertController.basicMessage(self.titleWarinig, message: self.messageResetEmail)
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                    }, failure: { (error) -> Void in
+                        let  alertController = UIAlertController.basicMessage(self.titleWarinig, message: self.messageResetEmail)
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                })
+          }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel)
+            { (alertAction) -> Void in
+            
+            }
+        
+        alertController.addAction(forgetPasswordAction)
+        alertController.addAction(cancelAction)
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     @IBAction func signup(sender: UIButton) {
