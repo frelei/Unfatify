@@ -14,8 +14,8 @@ A demostration of a mobile app for iOS to count calories.
 Backend - Restfull API: Parse
 Language: Swift
 
-## Screenshot
+## Screenshots
 
 ![Welcome](http://i.imgur.com/pR8JTVF.png)
-![Sign In](http://i.imgur.com/5HgvO9f.png)
+![Sign In](http://i.imgur.com/WFhWM6j.png?1)
 ![Home](http://i.imgur.com/wyvCV76.png)
