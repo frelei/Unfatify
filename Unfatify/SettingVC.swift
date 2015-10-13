@@ -7,27 +7,37 @@
 //
 
 import UIKit
+import QuartzCore
 
-class SettingVC: UIViewController, GoalDelegate {
+class SettingVC: UIViewController, GoalDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    
+    // MARK: MESSAGES
+    let messageTitle = "Unfatify"
+    let messageCam = "Camera Not Found"
+    let messageCamDevice = "This device has no Camera"
+    let messageUpload = "Photo Uploaded Success"
     
     // MARK: ATTRIBUTES
     var user: User?
+    var imagePicker: UIImagePickerController? = UIImagePickerController()
     
     // MARK: IBOUTLET
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblImage: UIImageView!
     @IBOutlet weak var lblGoal: UILabel!
     @IBOutlet weak var manager: UIButton!
-    
+    @IBOutlet weak var photo: UIImageView!
     
     // MARK: LIFE CYCLE VC
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = true
         self.manager.hidden = true
+        self.imagePicker?.delegate = self
         
+        // Load user image
+        self.photo.loadImageAsyncFromUrl(user?.picture)
+
         let parseAPI = ParseAPI()
         parseAPI.rolesUser( (user?.objectID)! , success: { (data) -> Void in
                 let roles = data as! [[String:AnyObject]]
@@ -88,7 +98,15 @@ class SettingVC: UIViewController, GoalDelegate {
     
     
     @IBAction func touchTakePicture(sender: UIButton) {
-        
+        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)){
+            imagePicker!.allowsEditing = false
+            imagePicker!.sourceType = UIImagePickerControllerSourceType.Camera
+            imagePicker!.cameraCaptureMode = .Photo
+            self.presentViewController(imagePicker!, animated: true, completion: nil)
+        }else{
+            let  alertController = UIAlertController.basicMessage(self.messageTitle, message: self.messageCamDevice)
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
     }
     
     
@@ -117,6 +135,37 @@ class SettingVC: UIViewController, GoalDelegate {
             self.presentViewController(alertController, animated: true, completion: nil)
         }
     }
+    
+    // MARK: PICKER IMAGE DELEGATE
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]){
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        self.photo.contentMode  = .ScaleAspectFill
+        self.photo.image = chosenImage
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        let dataImage = UIImageJPEGRepresentation(chosenImage, 0.5)
+
+        let parseAPI = ParseAPI()
+        parseAPI.uploadFile((user?.objectID)!, data: dataImage!, success: { (data) -> Void in
+            if let  dataValue = data{
+                if let url = dataValue["url"]{
+                    parseAPI.updateUser(["picture":url!], userID: (self.user?.objectID)!, token: (self.user?.sessionToken)!, success: { (data) -> Void in
+                            let  alertController = UIAlertController.basicMessage(self.messageTitle, message: self.messageUpload)
+                            self.presentViewController(alertController, animated: true, completion: nil)
+                        }, failure: { (error) -> Void in
+                    
+                    })
+                }
+            }
+            }, failure: { (error) -> Void in
+                
+        })
+        
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController){
+        picker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     
     // MARK: Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

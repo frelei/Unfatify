@@ -384,7 +384,7 @@ class ParseAPI {
     }
     
     func basicRoleToUser(objectId:String, success:PARSE_SUCCESS , failure:PARSE_ERROR){
-        let urlPath = PARSE_API_URL + "roles/"+"6oLgt1U7MC"
+        let urlPath = PARSE_API_URL + "roles/"+"6oLgt1U7MC" // Basic Role
         let webService = WebService()
         let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY]
         let param = ["users":["__op":"AddRelation","objects":[["__type":"Pointer","className": "_User","objectId":objectId]]]]
@@ -397,6 +397,23 @@ class ParseAPI {
                 let fail = ERROR as! [String: AnyObject]
                 failure(error: fail)
         })
+    }
+    
+    func uploadFile(objectId:String, data: NSData, success:PARSE_SUCCESS, failure: PARSE_ERROR){
+        let urlPath = PARSE_API_URL + "files/picture.jpg"
+        let webService = WebService()
+        let header = [APP_ID_HEADER : APP_ID, APP_KEY_HEADER : APP_KEY, "Content-Type" : "image/jpeg"]
+        
+        webService.connection(WebServiceConnectionType.POST_IMG, url: urlPath, params: ["image":data], header: header,
+            success: { (JSON) -> Void in
+                let object = JSON as! [String:AnyObject]
+                success(data: object)
+            }, failure: { (ERROR) -> Void in
+                let fail = ERROR as! [String: AnyObject]
+                failure(error: fail)
+        })
+        
+        
     }
     
     

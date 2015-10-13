@@ -28,6 +28,7 @@ class CalorieVC: UIViewController, UITableViewDelegate, UITableViewDataSource, E
         }
     }
     
+    
     @IBOutlet weak var lblEaten: UILabel!
     @IBOutlet weak var lblKcalLeft: UILabel!
     @IBOutlet weak var lblExcceded: UILabel!

@@ -11,7 +11,7 @@ import Alamofire
 
 /// WebServiceConnectionType represents the type(verb) of the HTTP connetion
 enum WebServiceConnectionType{
-    case GET,POST,PUT,DELETE,GET_SYNC
+    case GET,POST,PUT,DELETE,GET_SYNC,POST_IMG
 }
 
 /// WebService is the class responsable for HTTP request to a Restful API
@@ -130,6 +130,24 @@ class WebService {
             })
             task.resume()
             dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+           
+        case .POST_IMG:
+            let data =  params!["image"] as! NSData
+            Alamofire.upload(.POST, url, headers: header, data: data)
+            .responseJSON(completionHandler: { (response) -> Void in
+                let result = response.result
+                if result.isSuccess{
+                    let json = result.value as! [String: AnyObject]
+                    if let _ = json["error"]{
+                        failure(ERROR: json)
+                    }else{
+                        success(JSON: json)
+                    }
+                    
+                }else{
+                    failure(ERROR: ["error":"Occured an error"])
+                }
+            })
         }
     }
 }

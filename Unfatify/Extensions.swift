@@ -121,6 +121,25 @@ extension NSDate{
         return isLess
     }
 
+}
+
+extension UIImageView{
+    
+    func loadImageAsyncFromUrl(url: String?){
+        if let picture = url{
+            if let url = NSURL(string: picture) {
+                let request: NSURLRequest = NSURLRequest(URL: url)
+                let mainQueue = NSOperationQueue.mainQueue()
+                NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
+                    if error == nil{
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.image = UIImage(data:data!)
+                        })
+                    }
+                })
+            }
+        }    
+    }
     
 }
 

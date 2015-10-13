@@ -1073,6 +1073,7 @@
                         <outlet property="lblImage" destination="jy1-HV-Jkz" id="9Aw-42-kSP"/>
                         <outlet property="lblName" destination="odY-3p-yjS" id="S8h-IS-sGS"/>
                         <outlet property="manager" destination="lZ5-2T-chP" id="yRn-Zf-mGV"/>
+                        <outlet property="photo" destination="jy1-HV-Jkz" id="EHn-A0-vRh"/>
                         <segue destination="XcA-gm-gQ9" kind="presentation" identifier="goToFilter" id="Sku-Vq-sIg"/>
                         <segue destination="oEF-tj-MYu" kind="show" identifier="goToChangeGoal" id="xYO-WJ-T0S"/>
                         <segue destination="2HH-p2-k6D" kind="presentation" identifier="goToManager" id="w3g-j4-efz"/>
